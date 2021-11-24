@@ -1,17 +1,23 @@
 import { Link } from "react-router-dom";
+import Container from '@mui/material/Container'
+import Grid from "@mui/material/Grid";
+import ArticleItem from "./ArticleItem";
+import Button from "@mui/material/Button";
+
 
 const ArticleList = ({ articleList }) => {
     return (
-        <div className="article-list">
-            {articleList.map(article => (
-                <div className="article-preview" key={article.id} >
-                    <Link to={`/articles/${article.id}`}>
-                        <h2>{article.title}</h2>
-                        <p>Written by {article.author.name}</p>
-                    </Link>
-                </div>
-            ))}
-        </div>
+        <Container className="article-list">
+            <Grid container spacing={3}>
+                {articleList.map(article => (
+
+                    <Grid item xs={12} md={6} lg={4} key={article.id} >
+                        <ArticleItem article={article} />
+                    </Grid>
+
+                ))}
+            </Grid>
+        </Container >
     );
 }
 

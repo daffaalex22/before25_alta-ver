@@ -1,6 +1,6 @@
 import './App.css';
 import HomeAdmin from './pages/Admin/HomeAdmin/HomeAdmin';
-import ArticleDetails from './components/ArticleDetails';
+import ArticleDetails from './pages/Admin/ArticleDetails';
 import NotFound from './pages/NotFound/NotFound';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
