@@ -18,7 +18,7 @@ const classes = {
   }
 }
 
-const Articlecontent = ({ articleList, categoryList, authorList, handleEdit, ubahArticle, editID, isEditing }) => {
+const ArticleDetails = ({ articleList, categoryList, authorList, handleEdit, ubahArticle, editID, isEditing }) => {
   const GET_ARTICLE_BY_ID = gql`query GetArticleById($id: Int! = 3) {
     before25_articles_by_pk(id: $id) {
       author {
@@ -56,7 +56,10 @@ const Articlecontent = ({ articleList, categoryList, authorList, handleEdit, uba
   const [contentError, setContentError] = useState(false)
 
   const { id } = useParams();
-  handleEdit(id)
+  useEffect(() => {
+    handleEdit(id)
+  }, [])
+
   const [variables, setVariables] = useState({
     variables: {
       "id": id
@@ -162,4 +165,4 @@ const Articlecontent = ({ articleList, categoryList, authorList, handleEdit, uba
   );
 }
 
-export default Articlecontent;
+export default ArticleDetails;
