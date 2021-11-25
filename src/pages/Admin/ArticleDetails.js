@@ -19,7 +19,7 @@ const classes = {
   }
 }
 
-const ArticleDetails = ({ articleList, categoryList, authorList, handleEdit, ubahArticle, editID, isEditing }) => {
+const ArticleDetails = ({ articleList, categoryList, authorList, handleEdit, ubahArticle, editID, isEditing, addAnArticle }) => {
   const GET_ARTICLE_BY_ID = gql`query GetArticleById($id: Int! = 3) {
     before25_articles_by_pk(id: $id) {
       author {
@@ -65,7 +65,7 @@ const ArticleDetails = ({ articleList, categoryList, authorList, handleEdit, uba
   const { id } = useParams();
   const idNumber = Number(id)
   useEffect(() => {
-    if (typeof (idNumber) === "number") {
+    if (typeof (idNumber) === "number" && isEditing) {
       handleEdit(idNumber)
     }
   }, [])
@@ -76,6 +76,13 @@ const ArticleDetails = ({ articleList, categoryList, authorList, handleEdit, uba
     }
   }
   )
+
+  const {
+    loading,
+    error,
+    data,
+    refetch
+  } = useQuery(GET_ARTICLE_BY_ID, variables);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -102,16 +109,26 @@ const ArticleDetails = ({ articleList, categoryList, authorList, handleEdit, uba
       setInputCategory('General')
       navigate('/')
     } else {
-      console.log("createArticle")
+      // console.log("createArticle")
+      const addedCategory = categoryList.find(item => item.name === category)
+      const addedAuthor = authorList.find(item => item.name === author)
+      const variableAdd = {
+        author_id: addedAuthor.id,
+        category_id: addedCategory.id,
+        title: title,
+        description: description,
+        content: content,
+      }
+      addAnArticle(variableAdd)
+      setTitle('')
+      setContent('')
+      setAuthor('James Clear')
+      setInputAuthor('James Clear')
+      setCategory('General')
+      setInputCategory('General')
+      navigate('/')
     }
   }
-
-  const {
-    loading,
-    error,
-    data,
-    refetch
-  } = useQuery(GET_ARTICLE_BY_ID, variables);
 
   useEffect(() => {
     setArticle(data?.before25_articles_by_pk)
@@ -130,7 +147,7 @@ const ArticleDetails = ({ articleList, categoryList, authorList, handleEdit, uba
   }, [article])
 
   if (loading) return 'Loading...'
-  if (!article) return 'No Data'
+  if (!article && isEditing) return 'No Data'
 
   return (
     <>

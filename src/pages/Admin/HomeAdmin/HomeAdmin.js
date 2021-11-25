@@ -9,10 +9,10 @@ import AddIcon from '@mui/icons-material/Add';
 import { Container } from "@mui/material";
 import { Popover } from "@mui/material";
 import { Typography } from "@mui/material";
-
-
+import { useNavigate } from "react-router";
 
 const HomeAdmin = ({ articleList, categoryList, authorList, editVariables, allLoading, handleEdit, ubahArticle }) => {
+    const navigate = useNavigate()
     const [anchorEl, setAnchorEl] = useState(null);
 
     const handlePopoverOpen = (event) => {
@@ -54,6 +54,7 @@ const HomeAdmin = ({ articleList, categoryList, authorList, editVariables, allLo
                 aria-haspopup="true"
                 onMouseEnter={handlePopoverOpen}
                 onMouseLeave={handlePopoverClose}
+                onClick={() => navigate('/add-article')}
             >
                 <AddIcon />
             </Fab>

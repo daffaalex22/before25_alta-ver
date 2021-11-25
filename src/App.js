@@ -7,6 +7,7 @@ import { useQuery, useMutation, gql } from "@apollo/client";
 import { useState, useEffect } from "react";
 import { createTheme, ThemeProvider } from '@mui/material'
 import { purple } from '@mui/material/colors'
+import { AddAlarm } from '@mui/icons-material';
 
 const theme = createTheme({
   palette: {
@@ -58,6 +59,17 @@ function App() {
   const EDIT_ARTICLE = gql`mutation MyMutation($author_id: Int!, $category_id: Int!, $content: String!, $description: String!, $title: String!, $_eq: Int!) {
     update_before25_articles(where: {id: {_eq: $_eq}}, _set: {author_id: $author_id, category_id: $category_id, content: $content, description: $description, title: $title}) {
       affected_rows
+    }
+  }`
+
+  const ADD_ARTICLE = gql`mutation addArticle($author_id: Int!, $category_id: Int!, $content: String!, $description: String!, $title: String!) {
+    insert_before25_articles_one(object: {author_id: $author_id, category_id: $category_id, content: $content, description: $description, title: $title}) {
+      id
+      author_id
+      category_id
+      content
+      description
+      title
     }
   }`
 
@@ -117,6 +129,14 @@ function App() {
     }
   ] = useMutation(EDIT_ARTICLE, { refetchQueries: [GET_ALL_ARTICLES] });
 
+  const [
+    addArticle, {
+      data: addData,
+      loading: addLoading,
+      error: addError
+    }
+  ] = useMutation(ADD_ARTICLE, { refetchQueries: [GET_ALL_ARTICLES] });
+
   const [articleList, setArticleList] = useState([])
   const [categoryList, setCategoryList] = useState([])
   const [authorList, setAuthorList] = useState([])
@@ -130,6 +150,10 @@ function App() {
     setEditID(0)
     console.log('article Edited')
   };
+
+  const addAnArticle = newArticle => {
+    addArticle({ variables: newArticle })
+  }
 
   const handleEdit = (id) => {
     setIsEditing(true);
@@ -160,6 +184,9 @@ function App() {
   if (editLoading) return 'Loading...'
   if (editError) return <div>{`${editError.message}`}</div>
 
+  if (addLoading) return 'Loading...'
+  if (addError) return <div>{`${addError.message}`}</div>
+
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
@@ -185,7 +212,7 @@ function App() {
                 categoryList={categoryList}
                 authorList={authorList}
               />}></Route>
-            <Route path="/articles/add" element={
+            <Route path="/add-article" element={
               <ArticleDetails
                 editID={editID}
                 isEditing={isEditing}
@@ -194,6 +221,7 @@ function App() {
                 articleList={articleList}
                 categoryList={categoryList}
                 authorList={authorList}
+                addAnArticle={addAnArticle}
               />}></Route>
             <Route path="*" element={<NotFound />}></Route>
           </Routes>
