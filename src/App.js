@@ -7,6 +7,8 @@ import { useQuery, useMutation, gql } from "@apollo/client";
 import { useState, useEffect } from "react";
 import { createTheme, ThemeProvider } from '@mui/material'
 import { purple } from '@mui/material/colors'
+import LoadingPage from './components/LoadingPage/LoadingPage';
+import LoadingSkeleton from './components/LoadingSkeleton/LoadingSkeleton';
 
 const theme = createTheme({
   palette: {
@@ -200,22 +202,22 @@ function App() {
     }
   }, [allData, categoryData, authorData])
 
-  if (authorLoading) return 'Loading...'
+  if (authorLoading) return <LoadingPage />
   if (authorError) return <div>{`${authorError.message}`}</div>
 
-  if (categoryLoading) return 'Loading...'
+  if (categoryLoading) return <LoadingPage />
   if (categoryError) return <div>{`${categoryError.message}`}</div>
 
-  // if (allLoading) return 'Loading...'
+  // if (allLoading) return <LoadingPage/>
   if (allError) return <div>{`${allError.message}`}</div>
 
-  if (editLoading) return 'Loading...'
+  if (editLoading) return <LoadingPage />
   if (editError) return <div>{`${editError.message}`}</div>
 
-  if (addLoading) return 'Loading...'
+  if (addLoading) return <LoadingPage />
   if (addError) return <div>{`${addError.message}`}</div>
 
-  if (deleteLoading) return 'Loading...'
+  if (deleteLoading) return <LoadingPage />
   if (deleteError) return <div>{`${deleteError.message}`}</div>
 
   return (

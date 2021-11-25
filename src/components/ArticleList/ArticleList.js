@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@mui/material";
 import DeleteDialog from "../DeleteDialog/DeleteDialog";
 import SimpleSnackbar from "../Snackbar/Snackbar";
+import LoadingSkeleton from "../LoadingSkeleton/LoadingSkeleton";
 
 const breakpointColumns = {
     default: 3,
@@ -145,6 +146,8 @@ const ArticleList = ({ articleList, categoryList, authorList, editVariables, loa
         console.log(val)
     }
 
+    const loadingList = [1, 2, 3, 4, 5, 6];
+
     return (
         <Container className="article-list" sx={classes.articleList}>
             <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -212,12 +215,7 @@ const ArticleList = ({ articleList, categoryList, authorList, editVariables, loa
             <Button sx={{ marginBottom: 5 }} onClick={handleShowAll}>
                 Show All
             </Button>
-            {
-                loadings &&
-                <div className="">Loading...</div>
-            }
-            {
-                !loadings &&
+            {!loadings ? (
                 <Masonry
                     breakpointCols={breakpointColumns}
                     className="my-masonry-grid"
@@ -233,7 +231,20 @@ const ArticleList = ({ articleList, categoryList, authorList, editVariables, loa
                         </div>
                     ))}
                 </Masonry>
-            }
+            ) : (
+                <Masonry
+                    breakpointCols={breakpointColumns}
+                    className="my-masonry-grid"
+                    columnClassName="my-masonry-grid_column">
+                    {loadingList.map(article => (
+                        <div key={article.id} >
+                            <LoadingSkeleton />
+                        </div>
+                    ))}
+                </Masonry>
+            )}
+
+
             <DeleteDialog
                 open={openDeleteDialog}
                 handleClose={handleCloseDeleteDialog}

@@ -9,6 +9,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import Button from '@mui/material/Button'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { useNavigate } from "react-router";
+import LoadingPage from "../../components/LoadingPage/LoadingPage";
 
 const classes = {
   field: {
@@ -88,12 +89,12 @@ const ArticleDetails = ({ articleList, categoryList, authorList, handleEdit, uba
     e.preventDefault();
     if (!title || !content || !inputAuthor || !inputCategory || !category || !author) {
       console.log("Required Field Cannot be Empty")
-    } else if (isEditing && editID) {
+    } else if (isEditing && idNumber) {
       // console.log('Editing an Article')
       const editedCategory = categoryList.find(item => item.name === category)
       const editedAuthor = authorList.find(item => item.name === author)
       const variableEdit = {
-        _eq: editID,
+        _eq: idNumber,
         author_id: editedAuthor.id,
         category_id: editedCategory.id,
         title: title,
@@ -108,7 +109,8 @@ const ArticleDetails = ({ articleList, categoryList, authorList, handleEdit, uba
       setCategory('General')
       setInputCategory('General')
       navigate('/')
-    } else {
+    }
+    else {
       // console.log("createArticle")
       const addedCategory = categoryList.find(item => item.name === category)
       const addedAuthor = authorList.find(item => item.name === author)
@@ -146,7 +148,7 @@ const ArticleDetails = ({ articleList, categoryList, authorList, handleEdit, uba
     }
   }, [article])
 
-  if (loading) return 'Loading...'
+  if (loading) return <LoadingPage />
   if (!article && isEditing) return 'No Data'
 
   return (
