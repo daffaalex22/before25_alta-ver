@@ -115,7 +115,7 @@ function App() {
       loading: editLoading,
       error: editError
     }
-  ] = useMutation(EDIT_ARTICLE);
+  ] = useMutation(EDIT_ARTICLE, { refetchQueries: [GET_ALL_ARTICLES] });
 
   const [articleList, setArticleList] = useState([])
   const [categoryList, setCategoryList] = useState([])
@@ -128,6 +128,7 @@ function App() {
     editArticle({ variables: variableEdit });
     setIsEditing(false)
     setEditID(0)
+    console.log('article Edited')
   };
 
   const handleEdit = (id) => {
@@ -175,6 +176,16 @@ function App() {
                 authorList={authorList}
               />}></Route>
             <Route path="/articles/:id" element={
+              <ArticleDetails
+                editID={editID}
+                isEditing={isEditing}
+                handleEdit={handleEdit}
+                ubahArticle={ubahArticle}
+                articleList={articleList}
+                categoryList={categoryList}
+                authorList={authorList}
+              />}></Route>
+            <Route path="/articles/add" element={
               <ArticleDetails
                 editID={editID}
                 isEditing={isEditing}

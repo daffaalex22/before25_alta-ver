@@ -8,6 +8,7 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from '@mui/material/Autocomplete';
 import Button from '@mui/material/Button'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import { useNavigate } from "react-router";
 
 const classes = {
   field: {
@@ -23,9 +24,11 @@ const ArticleDetails = ({ articleList, categoryList, authorList, handleEdit, uba
     before25_articles_by_pk(id: $id) {
       author {
         name
+        id
       }
       category {
         name
+        id
       }
       content
       created_at
@@ -35,6 +38,8 @@ const ArticleDetails = ({ articleList, categoryList, authorList, handleEdit, uba
       updated_at
     }
   }`
+
+  const navigate = useNavigate()
 
   const categoryOptions = categoryList?.map((category) => {
     const categoryOption = category.name
@@ -48,27 +53,57 @@ const ArticleDetails = ({ articleList, categoryList, authorList, handleEdit, uba
   const [article, setArticle] = useState({})
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
+  const [description, setDescription] = useState('')
   const [author, setAuthor] = useState('James Clear')
   const [category, setCategory] = useState('General')
   const [inputAuthor, setInputAuthor] = useState('James Clear')
   const [inputCategory, setInputCategory] = useState('General')
   const [titleError, setTitleError] = useState(false)
   const [contentError, setContentError] = useState(false)
+  const [descrptionError, setDescriptionError] = useState(false)
 
   const { id } = useParams();
+  const idNumber = Number(id)
   useEffect(() => {
-    handleEdit(id)
+    if (typeof (idNumber) === "number") {
+      handleEdit(idNumber)
+    }
   }, [])
 
   const [variables, setVariables] = useState({
     variables: {
-      "id": id
+      "id": idNumber
     }
   }
   )
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!title || !content || !inputAuthor || !inputCategory || !category || !author) {
+      console.log("Required Field Cannot be Empty")
+    } else if (isEditing && editID) {
+      // console.log('Editing an Article')
+      const editedCategory = categoryList.find(item => item.name === category)
+      const editedAuthor = authorList.find(item => item.name === author)
+      const variableEdit = {
+        _eq: editID,
+        author_id: editedAuthor.id,
+        category_id: editedCategory.id,
+        title: title,
+        description: description,
+        content: content,
+      }
+      ubahArticle(variableEdit)
+      setTitle('')
+      setContent('')
+      setAuthor('James Clear')
+      setInputAuthor('James Clear')
+      setCategory('General')
+      setInputCategory('General')
+      navigate('/')
+    } else {
+      console.log("createArticle")
+    }
   }
 
   const {
@@ -85,6 +120,7 @@ const ArticleDetails = ({ articleList, categoryList, authorList, handleEdit, uba
   useEffect(() => {
     if (article && article.author && article.category) {
       setTitle(article?.title)
+      setDescription(article?.description)
       setContent(article?.content)
       setAuthor(article?.author?.name)
       setCategory(article?.category?.name)
@@ -111,6 +147,16 @@ const ArticleDetails = ({ articleList, categoryList, authorList, handleEdit, uba
             value={title}
             required
             error={titleError}
+          />
+          <TextField
+            sx={classes.field}
+            onChange={(e) => setDescription(e.target.value)}
+            label="Description"
+            variant="outlined"
+            color="primary"
+            fullWidth
+            value={description}
+            error={descrptionError}
           />
           <TextField
             sx={classes.field}

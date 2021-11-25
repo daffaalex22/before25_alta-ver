@@ -5,15 +5,25 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import { Button } from '@mui/material';
+import { useNavigate } from 'react-router';
 
 const HeaderAdmin = () => {
+    const navigate = useNavigate()
+
+    const handleClick = () => {
+        navigate('/')
+    }
+
     return (
         <Box sx={{ flexGrow: 1, height: 5 }}>
             <AppBar position="fixed" color="primary" sx={{ padding: 1 }}>
                 <Toolbar variant="dense">
-                    <Typography variant="h6" color="inherit" component="div">
-                        Admin B25
-                    </Typography>
+                    <Button color="inherit" sx={{ textTransform: 'none' }} onClick={handleClick}>
+                        <Typography variant="h6" color="inherit" component="div">
+                            Admin B25
+                        </Typography>
+                    </Button>
                 </Toolbar>
             </AppBar>
         </Box>

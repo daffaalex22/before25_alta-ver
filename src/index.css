@@ -5,6 +5,10 @@
   src: url('./assets/fonts/Garamond\ Kursiv\ Halbfett/Garamond_Kursiv_Halbfett.ttf');
 }
 
+html {
+  overflow: visible !important;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
