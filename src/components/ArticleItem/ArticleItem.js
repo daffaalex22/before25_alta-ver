@@ -2,7 +2,7 @@ import Typography from "@mui/material/Typography";
 import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
 import CardContent from '@mui/material/CardContent'
-import MoreMenu from "./MoreMenu";
+import MoreMenu from "../MoreMenu/MoreMenu";
 import Button from '@mui/material/Button'
 
 
@@ -18,7 +18,7 @@ const classes = {
 }
 
 
-const ArticleItem = ({ article, handleEdit, ubahArticle }) => {
+const ArticleItem = ({ article, handleEdit, ubahArticle, handleDelete }) => {
     return (
         <Button sx={classes.btn}>
             <Card elevation={2}>
@@ -27,6 +27,7 @@ const ArticleItem = ({ article, handleEdit, ubahArticle }) => {
                         articleId={article.id}
                         handleEditRoot={handleEdit}
                         ubahArticleRoot={ubahArticle}
+                        handleDeleteRoot={handleDelete}
                     />}
                     title={
                         <Typography sx={classes.link} variant="h6" component="h4">

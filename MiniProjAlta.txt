@@ -1,0 +1,6 @@
+* Create, Edit, Delete in Admin Page
+* UI Article Page
+* Hasura Article Page, Article Details Client
+* TextEditor
+* Authentication
+* Static Page

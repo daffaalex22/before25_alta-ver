@@ -5,6 +5,17 @@ import NotFound from './pages/NotFound/NotFound';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useQuery, useMutation, gql } from "@apollo/client";
 import { useState, useEffect } from "react";
+import { createTheme, ThemeProvider } from '@mui/material'
+import { purple } from '@mui/material/colors'
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#121212'
+    },
+    secondary: purple
+  }
+})
 
 function App() {
   const GET_ALL_ARTICLES = gql`query GetArticles($title: String_comparison_exp!, $catName: String_comparison_exp!, $authorName: String_comparison_exp!) {
@@ -149,33 +160,35 @@ function App() {
   if (editError) return <div>{`${editError.message}`}</div>
 
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route exact path="/" element={
-            <HomeAdmin
-              handleEdit={handleEdit}
-              ubahArticle={ubahArticle}
-              allLoading={allLoading}
-              editVariables={editVariables}
-              articleList={articleList}
-              categoryList={categoryList}
-              authorList={authorList}
-            />}></Route>
-          <Route path="/articles/:id" element={
-            <ArticleDetails
-              editID={editID}
-              isEditing={isEditing}
-              handleEdit={handleEdit}
-              ubahArticle={ubahArticle}
-              articleList={articleList}
-              categoryList={categoryList}
-              authorList={authorList}
-            />}></Route>
-          <Route path="*" element={<NotFound />}></Route>
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <BrowserRouter>
+          <Routes>
+            <Route exact path="/" element={
+              <HomeAdmin
+                handleEdit={handleEdit}
+                ubahArticle={ubahArticle}
+                allLoading={allLoading}
+                editVariables={editVariables}
+                articleList={articleList}
+                categoryList={categoryList}
+                authorList={authorList}
+              />}></Route>
+            <Route path="/articles/:id" element={
+              <ArticleDetails
+                editID={editID}
+                isEditing={isEditing}
+                handleEdit={handleEdit}
+                ubahArticle={ubahArticle}
+                articleList={articleList}
+                categoryList={categoryList}
+                authorList={authorList}
+              />}></Route>
+            <Route path="*" element={<NotFound />}></Route>
+          </Routes>
+        </BrowserRouter>
+      </div>
+    </ThemeProvider>
   );
 }
 

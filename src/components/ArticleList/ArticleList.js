@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import Container from '@mui/material/Container';
-import ArticleItem from "./ArticleItem";
+import ArticleItem from "../ArticleItem/ArticleItem";
 import Masonry from 'react-masonry-css';
 import Autocomplete from '@mui/material/Autocomplete'
 import TextField from '@mui/material/TextField'
 import { Box } from "@mui/system";
 import { useState, useEffect } from "react";
 import { Button } from "@mui/material";
+import DeleteDialog from "../DeleteDialog/DeleteDialog";
+import SimpleSnackbar from "../Snackbar/Snackbar";
 
 const breakpointColumns = {
     default: 3,
@@ -33,6 +35,30 @@ const ArticleList = ({ articleList, categoryList, authorList, editVariables, loa
     const [titleValue, setTitleValue] = useState('')
     const [catValue, setCatValue] = useState('')
     const [authorValue, setAuthorValue] = useState('')
+
+    const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+    const [openSnackbar, setOpenSnackbar] = useState(false);
+
+    const handleOpenDeleteDialog = () => {
+        setOpenDeleteDialog(true);
+    };
+
+    const handleCloseDeleteDialog = () => {
+        setOpenDeleteDialog(false);
+    };
+
+    const handleOpenSnackbar = () => {
+        setOpenDeleteDialog(false);
+        setOpenSnackbar(true);
+    };
+
+    const handleCloseSnackbar = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpenSnackbar(false);
+    };
 
     const articleOptions = articleList?.map((article) => {
         const articleOption = {
@@ -126,11 +152,21 @@ const ArticleList = ({ articleList, categoryList, authorList, editVariables, loa
                                 article={article}
                                 handleEdit={handleEdit}
                                 ubahArticle={ubahArticle}
+                                handleDelete={handleOpenDeleteDialog}
                             />
                         </div>
                     ))}
                 </Masonry>
             }
+            <DeleteDialog
+                open={openDeleteDialog}
+                handleClose={handleCloseDeleteDialog}
+                handleOpenSnackbar={handleOpenSnackbar}
+            />
+            <SimpleSnackbar
+                open={openSnackbar}
+                handleClose={handleCloseSnackbar}
+            />
 
         </Container >
     );

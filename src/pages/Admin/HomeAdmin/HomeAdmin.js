@@ -1,7 +1,7 @@
 // import GET_ALL_ARTICLES from "../../../gqlQueries";
 import { useQuery } from "@apollo/client";
 import { useState, useEffect } from "react";
-import ArticleList from "../../../components/ArticleList";
+import ArticleList from "../../../components/ArticleList/ArticleList";
 import HeaderAdmin from "../../../components/HeaderAdmin/HeaderAdmin";
 import { gql } from "@apollo/client"
 
