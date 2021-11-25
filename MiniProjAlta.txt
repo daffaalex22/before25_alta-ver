@@ -1,6 +1,8 @@
-* Create, Edit, Delete in Admin Page
+* Filter & Search fix Admin
 * UI Article Page
 * Hasura Article Page, Article Details Client
 * TextEditor
 * Authentication
-* Static Page
+* Static Pages
+
+[v] Create, Edit, Delete in Admin Page

@@ -38,11 +38,14 @@ const ArticleList = ({ articleList, categoryList, authorList, editVariables, loa
     const [catValue, setCatValue] = useState('')
     const [authorValue, setAuthorValue] = useState('')
 
+    const [titleInputValue, setTitleInputValue] = useState('')
+    const [catInputValue, setCatInputValue] = useState('')
+    const [authorInputValue, setAuthorInputValue] = useState('')
+
     const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
     const [openSnackbar, setOpenSnackbar] = useState(false);
 
     const [deleteID, setDeleteID] = useState(null)
-    // const [deletingID, setDeletingID] = useState(null)
 
     const handleOpenDeleteDialog = (notedDeleteID) => {
         setDeleteID(notedDeleteID)
@@ -90,23 +93,52 @@ const ArticleList = ({ articleList, categoryList, authorList, editVariables, loa
     useEffect(() => {
         if (catValue) {
             editVariables("", "", catValue)
-            setCatValue("")
         }
         if (authorValue) {
             editVariables("", authorValue, "")
-            setAuthorValue('')
+            // setAuthorValue('')
         }
         if (titleValue) {
             editVariables(titleValue, "", "")
-            setTitleValue('')
+            // setTitleValue('')
         }
     }, [catValue, authorValue, titleValue])
 
-    const handleShowAll = async () => {
+    useEffect(() => {
+        if (catValue && catInputValue) {
+            setAuthorValue('')
+            setAuthorInputValue('')
+            setTitleValue('')
+            setTitleInputValue('')
+        }
+    }, [catValue, catInputValue])
+
+    useEffect(() => {
+        if (catValue && catInputValue) {
+            setCatValue('')
+            setCatInputValue('')
+            setTitleValue('')
+            setTitleInputValue('')
+        }
+    }, [authorValue, authorInputValue])
+
+    useEffect(() => {
+        if (catValue && catInputValue) {
+            setAuthorValue('')
+            setAuthorInputValue('')
+            setCatValue('')
+            setCatInputValue('')
+        }
+    }, [titleValue, titleInputValue])
+
+    const handleShowAll = () => {
         console.log('ShowAll')
-        await setTitleValue('')
-        await setCatValue('')
-        await setAuthorValue('')
+        setTitleValue('')
+        setCatValue('')
+        setAuthorValue('')
+        setTitleInputValue('')
+        setCatInputValue('')
+        setAuthorInputValue('')
         editVariables("", "", "")
     }
 
@@ -118,7 +150,10 @@ const ArticleList = ({ articleList, categoryList, authorList, editVariables, loa
                     sx={classes.searchBar}
                     id="combo-box-demo"
                     options={articleOptions}
+                    value={titleValue}
                     onChange={(event, values) => setTitleValue(values)}
+                    inputValue={titleInputValue}
+                    onChange={(event, values) => setTitleInputValue(values)}
                     renderInput={(params) => <TextField {...params} label="Search Article by Title" />}
                 />
 
@@ -128,7 +163,10 @@ const ArticleList = ({ articleList, categoryList, authorList, editVariables, loa
                     clearOnBlur
                     id="combo-box-demo"
                     options={categoryOptions}
-                    onChange={(event, values) => values ? setCatValue(values) : null}
+                    value={catValue}
+                    onChange={(event, values) => setCatValue(values)}
+                    inputValue={catInputValue}
+                    onInputChange={(event, values) => setCatInputValue(values)}
                     renderInput={(params) => <TextField {...params} label="Filter by Category" />}
                 />
 
@@ -137,7 +175,10 @@ const ArticleList = ({ articleList, categoryList, authorList, editVariables, loa
                     sx={classes.filter}
                     id="combo-box-demo"
                     options={authorOptions}
+                    value={authorValue}
                     onChange={(event, values) => setAuthorValue(values)}
+                    inputValue={authorInputValue}
+                    onInputChange={(event, values) => setAuthorInputValue(values)}
                     renderInput={(params) => <TextField {...params} label="Filter by Author" />}
                 />
 

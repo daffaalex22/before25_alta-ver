@@ -7,7 +7,6 @@ import { useQuery, useMutation, gql } from "@apollo/client";
 import { useState, useEffect } from "react";
 import { createTheme, ThemeProvider } from '@mui/material'
 import { purple } from '@mui/material/colors'
-import { AddAlarm } from '@mui/icons-material';
 
 const theme = createTheme({
   palette: {
