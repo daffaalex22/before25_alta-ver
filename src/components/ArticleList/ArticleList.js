@@ -73,12 +73,7 @@ const ArticleList = ({ articleList, categoryList, authorList, editVariables, loa
     };
 
     const articleOptions = articleList?.map((article) => {
-        const articleOption = {
-            label: article.title,
-            id: article.id,
-            author: article.author.name,
-            category: article.category.name
-        }
+        const articleOption = article.title
         return articleOption
     })
     const categoryOptions = categoryList?.map((category) => {
@@ -98,11 +93,11 @@ const ArticleList = ({ articleList, categoryList, authorList, editVariables, loa
             editVariables("", authorValue, "")
             // setAuthorValue('')
         }
-        if (titleValue) {
-            editVariables(titleValue, "", "")
+        if (titleInputValue) {
+            editVariables(titleInputValue, "", "")
             // setTitleValue('')
         }
-    }, [catValue, authorValue, titleValue])
+    }, [catValue, authorValue, titleInputValue])
 
     useEffect(() => {
         if (catValue && catInputValue) {
@@ -114,7 +109,7 @@ const ArticleList = ({ articleList, categoryList, authorList, editVariables, loa
     }, [catValue, catInputValue])
 
     useEffect(() => {
-        if (catValue && catInputValue) {
+        if (authorValue && authorInputValue) {
             setCatValue('')
             setCatInputValue('')
             setTitleValue('')
@@ -123,7 +118,7 @@ const ArticleList = ({ articleList, categoryList, authorList, editVariables, loa
     }, [authorValue, authorInputValue])
 
     useEffect(() => {
-        if (catValue && catInputValue) {
+        if (titleValue || titleInputValue) {
             setAuthorValue('')
             setAuthorInputValue('')
             setCatValue('')
@@ -142,31 +137,56 @@ const ArticleList = ({ articleList, categoryList, authorList, editVariables, loa
         editVariables("", "", "")
     }
 
+    const handleClearInput = () => {
+        editVariables("", "", "")
+    }
+
+    const handleSelect = (val) => {
+        console.log(val)
+    }
+
     return (
         <Container className="article-list" sx={classes.articleList}>
             <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Autocomplete
                     disablePortal
+                    clearOnBlur={false}
                     sx={classes.searchBar}
                     id="combo-box-demo"
                     options={articleOptions}
                     value={titleValue}
-                    onChange={(event, values) => setTitleValue(values)}
+                    onChange={(event, value, reason) => {
+                        setTitleValue(value)
+                        if (reason === 'clear') handleClearInput();
+                        if (reason === 'selectOption') handleSelect(value);
+                        if (reason === 'blur' && !value) handleClearInput();
+                    }}
                     inputValue={titleInputValue}
-                    onChange={(event, values) => setTitleInputValue(values)}
+                    onInputChange={(event, value, reason) => {
+                        setTitleInputValue(value)
+                        if (reason === 'clear') handleClearInput();
+                        if (reason === 'selectOption') handleSelect(value);
+                        if (reason === 'blur' && !value) handleClearInput();
+                    }}
                     renderInput={(params) => <TextField {...params} label="Search Article by Title" />}
                 />
 
                 <Autocomplete
                     disablePortal
                     sx={classes.filter}
-                    clearOnBlur
+                    // clearOnBlur
                     id="combo-box-demo"
                     options={categoryOptions}
                     value={catValue}
-                    onChange={(event, values) => setCatValue(values)}
+                    onChange={(event, value, reason) => {
+                        setCatValue(value)
+                        if (reason === 'clear') handleClearInput();
+                    }}
                     inputValue={catInputValue}
-                    onInputChange={(event, values) => setCatInputValue(values)}
+                    onInputChange={(event, value, reason) => {
+                        setCatInputValue(value)
+                        if (reason === 'clear') handleClearInput();
+                    }}
                     renderInput={(params) => <TextField {...params} label="Filter by Category" />}
                 />
 
@@ -176,9 +196,15 @@ const ArticleList = ({ articleList, categoryList, authorList, editVariables, loa
                     id="combo-box-demo"
                     options={authorOptions}
                     value={authorValue}
-                    onChange={(event, values) => setAuthorValue(values)}
+                    onChange={(event, value, reason) => {
+                        setAuthorValue(value)
+                        if (reason === 'clear') handleClearInput();
+                    }}
                     inputValue={authorInputValue}
-                    onInputChange={(event, values) => setAuthorInputValue(values)}
+                    onInputChange={(event, value, reason) => {
+                        setAuthorInputValue(value)
+                        if (reason === 'clear') handleClearInput();
+                    }}
                     renderInput={(params) => <TextField {...params} label="Filter by Author" />}
                 />
 
