@@ -73,6 +73,23 @@ function App() {
     }
   }`
 
+  const DELETE_ARTICLE_BY_ID = gql`mutation deleteArticleById($id: Int!) {
+    delete_before25_articles_by_pk(id: $id) {
+      title
+      id
+      description
+      content
+      category_id
+      author_id
+      category {
+        name
+      }
+      author {
+        name
+      }
+    }
+  }`
+
   const [variables, setVariables] = useState({
     variables: {
       "title": {
@@ -137,6 +154,14 @@ function App() {
     }
   ] = useMutation(ADD_ARTICLE, { refetchQueries: [GET_ALL_ARTICLES] });
 
+  const [
+    deleteArticleById, {
+      data: deleteData,
+      loading: deleteLoading,
+      error: deleteError
+    }
+  ] = useMutation(DELETE_ARTICLE_BY_ID, { refetchQueries: [GET_ALL_ARTICLES] });
+
   const [articleList, setArticleList] = useState([])
   const [categoryList, setCategoryList] = useState([])
   const [authorList, setAuthorList] = useState([])
@@ -158,6 +183,10 @@ function App() {
   const handleEdit = (id) => {
     setIsEditing(true);
     setEditID(id);
+  }
+
+  const handleDelete = (deleteId) => {
+    deleteArticleById({ variables: { id: deleteId } })
   }
 
   useEffect(() => {
@@ -187,6 +216,9 @@ function App() {
   if (addLoading) return 'Loading...'
   if (addError) return <div>{`${addError.message}`}</div>
 
+  if (deleteLoading) return 'Loading...'
+  if (deleteError) return <div>{`${deleteError.message}`}</div>
+
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
@@ -196,6 +228,7 @@ function App() {
               <HomeAdmin
                 handleEdit={handleEdit}
                 ubahArticle={ubahArticle}
+                handleDeleteRoot={handleDelete}
                 allLoading={allLoading}
                 editVariables={editVariables}
                 articleList={articleList}

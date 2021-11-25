@@ -30,7 +30,9 @@ const classes = {
     }
 }
 
-const ArticleList = ({ articleList, categoryList, authorList, editVariables, loadings, handleEdit, ubahArticle }) => {
+const ArticleList = ({ articleList, categoryList, authorList, editVariables, loadings, handleEdit, ubahArticle, handleDeleteRoot }) => {
+
+
     console.log(loadings)
     const [titleValue, setTitleValue] = useState('')
     const [catValue, setCatValue] = useState('')
@@ -39,24 +41,31 @@ const ArticleList = ({ articleList, categoryList, authorList, editVariables, loa
     const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
     const [openSnackbar, setOpenSnackbar] = useState(false);
 
-    const handleOpenDeleteDialog = () => {
+    const [deleteID, setDeleteID] = useState(null)
+    // const [deletingID, setDeletingID] = useState(null)
+
+    const handleOpenDeleteDialog = (notedDeleteID) => {
+        setDeleteID(notedDeleteID)
         setOpenDeleteDialog(true);
     };
 
     const handleCloseDeleteDialog = () => {
         setOpenDeleteDialog(false);
+        setDeleteID(null);
     };
 
     const handleOpenSnackbar = () => {
+        handleDeleteRoot(deleteID)
         setOpenDeleteDialog(false);
         setOpenSnackbar(true);
+        setDeleteID(null);
     };
 
     const handleCloseSnackbar = (event, reason) => {
         if (reason === 'clickaway') {
             return;
         }
-
+        setDeleteID(null);
         setOpenSnackbar(false);
     };
 

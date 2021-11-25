@@ -27,7 +27,7 @@ const ArticleItem = ({ article, handleEdit, ubahArticle, handleDelete }) => {
                         articleId={article.id}
                         handleEditRoot={handleEdit}
                         ubahArticleRoot={ubahArticle}
-                        handleDeleteRoot={handleDelete}
+                        handleDeleteList={handleDelete}
                     />}
                     title={
                         <Typography sx={classes.link} variant="h6" component="h4">
