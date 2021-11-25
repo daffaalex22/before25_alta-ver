@@ -1,37 +1,45 @@
-import { Link } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
 import CardContent from '@mui/material/CardContent'
 import MoreMenu from "./MoreMenu";
+import Button from '@mui/material/Button'
 
 
 const classes = {
     link: {
         color: 'black',
-        '&:hover': {
-            color: 'gray',
-        }
+    },
+    btn: {
+        textAlign: 'left',
+        textTransform: 'none',
+        padding: 0
     }
 }
 
 
-const ArticleItem = ({ article }) => {
+const ArticleItem = ({ article, handleEdit, ubahArticle }) => {
     return (
-        <Card elevation={2}>
-            <CardHeader
-                action={<MoreMenu />}
-                title={`Written by ${article.author.name}`}
-                subheader={article.category.name}
-            />
-            <Link to={`/articles/${article.id}`}>
+        <Button sx={classes.btn}>
+            <Card elevation={2}>
+                <CardHeader
+                    action={<MoreMenu
+                        articleId={article.id}
+                        handleEditRoot={handleEdit}
+                        ubahArticleRoot={ubahArticle}
+                    />}
+                    title={
+                        <Typography sx={classes.link} variant="h6" component="h4">
+                            {article.title}
+                        </Typography>
+                    }
+                />
                 <CardContent>
-                    <Typography sx={classes.link} variant="h5" component="h4">
-                        {article.title}
-                    </Typography>
+                    <Typography variant="subtitle2">{article.category.name}</Typography>
+                    <Typography variant="subtitle1">Written by {article.author.name}</Typography>
                 </CardContent>
-            </Link>
-        </Card>
+            </Card>
+        </Button>
     );
 }
 

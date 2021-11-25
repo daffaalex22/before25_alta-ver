@@ -1,4 +1,3 @@
-import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton'
@@ -8,8 +7,19 @@ import EditIcon from '@mui/icons-material/Edit';
 import { useState } from 'react';
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
+import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
-const MoreMenu = () => {
+const classes = {
+    link: {
+        textDecoration: 'none',
+        color: 'black',
+        display: 'inline'
+    }
+}
+
+const MoreMenu = ({ articleId, handleEditRoot, ubahArticleRoot }) => {
+    const navigate = useNavigate()
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -22,6 +32,7 @@ const MoreMenu = () => {
     const handleEdit = () => {
         setAnchorEl(null);
         console.log('Edit')
+        navigate('/articles/' + articleId)
     }
 
     const handleDelete = () => {
@@ -57,11 +68,11 @@ const MoreMenu = () => {
             >
                 <MenuItem onClick={handleEdit}>
                     <ListItemIcon><EditIcon /></ListItemIcon>
-                    <ListItemText primary="Edit" />
+                    <ListItemText primary="Edit" sx={classes.link} />
                 </MenuItem>
                 <MenuItem onClick={handleDelete}>
                     <ListItemIcon><DeleteForeverIcon /></ListItemIcon>
-                    <ListItemText primary="Delete" />
+                    <ListItemText primary="Delete" sx={classes.link} />
                 </MenuItem>
             </Menu>
         </div>
