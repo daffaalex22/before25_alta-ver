@@ -19,7 +19,8 @@ const breakpointColumns = {
 
 const classes = {
     articleList: {
-        marginTop: 10
+        marginTop: 10,
+        textAlign: 'center'
     },
     searchBar: {
         width: '45%',
@@ -149,7 +150,11 @@ const ArticleList = ({ articleList, categoryList, authorList, editVariables, loa
 
     return (
         <Container className="article-list" sx={classes.articleList}>
-            <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+            <Box sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between'
+            }}>
                 <Autocomplete
                     disablePortal
                     clearOnBlur={false}
@@ -161,16 +166,23 @@ const ArticleList = ({ articleList, categoryList, authorList, editVariables, loa
                         setTitleValue(value)
                         if (reason === 'clear') handleClearInput();
                         if (reason === 'selectOption') handleSelect(value);
-                        if (reason === 'blur' && !value) handleClearInput();
+                        // if (!value) handleClearInput();
+                        // if (reason === 'blur' && !value) handleClearInput();
                     }}
                     inputValue={titleInputValue}
                     onInputChange={(event, value, reason) => {
                         setTitleInputValue(value)
                         if (reason === 'clear') handleClearInput();
                         if (reason === 'selectOption') handleSelect(value);
-                        if (reason === 'blur' && !value) handleClearInput();
+                        // if (!value && reason !== 'blur') handleClearInput();
+                        // if (reason === 'blur' && !value) handleClearInput();
                     }}
-                    renderInput={(params) => <TextField {...params} label="Search Article by Title" />}
+                    renderInput={(params) => (
+                        <TextField
+                            {...params}
+                            label="Search Article by Title"
+                        />)
+                    }
                 />
 
                 <Autocomplete
@@ -189,7 +201,12 @@ const ArticleList = ({ articleList, categoryList, authorList, editVariables, loa
                         setCatInputValue(value)
                         if (reason === 'clear') handleClearInput();
                     }}
-                    renderInput={(params) => <TextField {...params} label="Filter by Category" />}
+                    renderInput={(params) => (
+                        <TextField
+                            {...params}
+                            label="Filter by Category"
+                        />
+                    )}
                 />
 
                 <Autocomplete
@@ -211,7 +228,7 @@ const ArticleList = ({ articleList, categoryList, authorList, editVariables, loa
                 />
 
             </Box>
-            <Button sx={{ marginBottom: 5 }} onClick={handleShowAll}>
+            <Button sx={{ marginBottom: 3, marginRight: 'auto' }} onClick={handleShowAll}>
                 Show All
             </Button>
             {!loadings ? (

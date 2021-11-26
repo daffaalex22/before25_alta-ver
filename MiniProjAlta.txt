@@ -1,8 +1,8 @@
-* Filter & Search fix Admin
-* UI Article Page
-* Hasura Article Page, Article Details Client
+* UI Article Client Page
+* Hasura Article, Article Details Client Page
 * TextEditor
 * Authentication
 * Static Pages
 
 [v] Create, Edit, Delete in Admin Page
+[V] Filter & Search fix Admin

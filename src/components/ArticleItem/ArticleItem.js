@@ -7,39 +7,46 @@ import Button from '@mui/material/Button'
 
 
 const classes = {
-    link: {
+    title: {
         color: 'black',
+        textAlign: 'left'
     },
     btn: {
+        display: 'flex',
+        justifyContent: 'start',
         textAlign: 'left',
         textTransform: 'none',
-        padding: 0
+        padding: 0,
+        width: '100%'
     }
 }
 
 
 const ArticleItem = ({ article, ubahArticle, handleDelete }) => {
     return (
-        <Button sx={classes.btn}>
-            <Card elevation={2}>
-                <CardHeader
-                    action={<MoreMenu
-                        articleId={article.id}
-                        ubahArticleRoot={ubahArticle}
-                        handleDeleteList={handleDelete}
-                    />}
-                    title={
-                        <Typography sx={classes.link} variant="h6" component="h4">
-                            {article.title}
-                        </Typography>
-                    }
-                />
-                <CardContent>
+        <Card elevation={2}>
+            {/* <Button sx={classes.btn}> */}
+            <CardHeader
+                action={<MoreMenu
+                    articleId={article.id}
+                    ubahArticleRoot={ubahArticle}
+                    handleDeleteList={handleDelete}
+                />}
+                title={
+                    <Typography sx={classes.title} variant="h6" component="h4">
+                        {article.title}
+                    </Typography>
+                }
+            />
+            {/* </Button> */}
+            <Button sx={classes.btn}>
+                <CardContent sx={{ horizontalAlign: 'start' }}>
                     <Typography variant="subtitle2">{article.category.name}</Typography>
                     <Typography variant="subtitle1">Written by {article.author.name}</Typography>
                 </CardContent>
-            </Card>
-        </Button>
+            </Button>
+
+        </Card >
     );
 }
 

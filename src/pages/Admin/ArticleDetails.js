@@ -262,7 +262,7 @@ const ArticleDetails = ({ articleList, categoryList, authorList, ubahArticle, ad
             variant="contained"
             endIcon={<KeyboardArrowRightIcon />}
           >
-            Submit
+            {isEditing ? 'Edit Article' : 'Add Article'}
           </Button>
         </form>
       </Container>
