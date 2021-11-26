@@ -12,7 +12,7 @@ const HeaderAdmin = () => {
     const navigate = useNavigate()
 
     const handleClick = () => {
-        navigate('/')
+        navigate('/admin')
     }
 
     return (

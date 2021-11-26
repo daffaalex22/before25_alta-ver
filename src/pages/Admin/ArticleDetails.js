@@ -125,7 +125,7 @@ const ArticleDetails = ({ articleList, categoryList, authorList, ubahArticle, ad
       setCategory('General')
       setInputCategory('General')
       setIsEditing(false)
-      navigate('/')
+      navigate('/admin')
     }
     else {
       // console.log("createArticle")
@@ -145,7 +145,7 @@ const ArticleDetails = ({ articleList, categoryList, authorList, ubahArticle, ad
       setInputAuthor('James Clear')
       setCategory('General')
       setInputCategory('General')
-      navigate('/')
+      navigate('/admin')
     }
   }
 
