@@ -167,13 +167,13 @@ function App() {
   const [categoryList, setCategoryList] = useState([])
   const [authorList, setAuthorList] = useState([])
 
-  const [isEditing, setIsEditing] = useState(false);
-  const [editID, setEditID] = useState(0);
+  // const [isEditing, setIsEditing] = useState(false);
+  // const [editID, setEditID] = useState(0);
 
   const ubahArticle = variableEdit => {
     editArticle({ variables: variableEdit });
-    setIsEditing(false)
-    setEditID(0)
+    // setIsEditing(false)
+    // setEditID(0)
     console.log('article Edited')
   };
 
@@ -181,10 +181,10 @@ function App() {
     addArticle({ variables: newArticle })
   }
 
-  const handleEdit = (id) => {
-    setIsEditing(true);
-    setEditID(id);
-  }
+  // const handleEdit = (id) => {
+  //   setIsEditing(true);
+  //   setEditID(id);
+  // }
 
   const handleDelete = (deleteId) => {
     deleteArticleById({ variables: { id: deleteId } })
@@ -227,7 +227,6 @@ function App() {
           <Routes>
             <Route exact path="/" element={
               <HomeAdmin
-                handleEdit={handleEdit}
                 ubahArticle={ubahArticle}
                 handleDeleteRoot={handleDelete}
                 allLoading={allLoading}
@@ -238,9 +237,6 @@ function App() {
               />}></Route>
             <Route path="/articles/:id" element={
               <ArticleDetails
-                editID={editID}
-                isEditing={isEditing}
-                handleEdit={handleEdit}
                 ubahArticle={ubahArticle}
                 articleList={articleList}
                 categoryList={categoryList}
@@ -248,9 +244,6 @@ function App() {
               />}></Route>
             <Route path="/add-article" element={
               <ArticleDetails
-                editID={editID}
-                isEditing={isEditing}
-                handleEdit={handleEdit}
                 ubahArticle={ubahArticle}
                 articleList={articleList}
                 categoryList={categoryList}

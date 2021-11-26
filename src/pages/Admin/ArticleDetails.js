@@ -20,7 +20,7 @@ const classes = {
   }
 }
 
-const ArticleDetails = ({ articleList, categoryList, authorList, handleEdit, ubahArticle, editID, isEditing, addAnArticle }) => {
+const ArticleDetails = ({ articleList, categoryList, authorList, ubahArticle, addAnArticle }) => {
   const GET_ARTICLE_BY_ID = gql`query GetArticleById($id: Int! = 3) {
     before25_articles_by_pk(id: $id) {
       author {
@@ -61,14 +61,23 @@ const ArticleDetails = ({ articleList, categoryList, authorList, handleEdit, uba
   const [inputCategory, setInputCategory] = useState('General')
   const [titleError, setTitleError] = useState(false)
   const [contentError, setContentError] = useState(false)
-  const [descrptionError, setDescriptionError] = useState(false)
+  const [authorError, setAuthorError] = useState(false)
+  const [categoryError, setCategoryError] = useState(false)
+  // const [descrptionError, setDescriptionError] = useState(false)
 
   const { id } = useParams();
-  const idNumber = Number(id)
+  const [idNumber, setIdNumber] = useState(Number(id))
+  const [isEditing, setIsEditing] = useState(false)
   useEffect(() => {
-    if (typeof (idNumber) === "number" && isEditing) {
-      handleEdit(idNumber)
+    if (!isNaN(idNumber)) {
+      setIsEditing(true);
+    } else {
+      setIsEditing(false)
     }
+    setTitleError(false)
+    setContentError(false)
+    setAuthorError(false)
+    setCategoryError(false)
   }, [])
 
   const [variables, setVariables] = useState({
@@ -87,10 +96,17 @@ const ArticleDetails = ({ articleList, categoryList, authorList, handleEdit, uba
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!title || !content || !inputAuthor || !inputCategory || !category || !author) {
-      console.log("Required Field Cannot be Empty")
-    } else if (isEditing && idNumber) {
-      // console.log('Editing an Article')
+    setTitleError(false)
+    setContentError(false)
+    setAuthorError(false)
+    setCategoryError(false)
+    if (!title || !content || !category || !author) {
+      if (!title) setTitleError(true)
+      if (!content) setContentError(true)
+      if (!author) setAuthorError(true)
+      if (!category) setCategoryError(true)
+    } else if (isEditing && !isNaN(idNumber)) {
+      console.log('Editing an Article')
       const editedCategory = categoryList.find(item => item.name === category)
       const editedAuthor = authorList.find(item => item.name === author)
       const variableEdit = {
@@ -108,6 +124,7 @@ const ArticleDetails = ({ articleList, categoryList, authorList, handleEdit, uba
       setInputAuthor('James Clear')
       setCategory('General')
       setInputCategory('General')
+      setIsEditing(false)
       navigate('/')
     }
     else {
@@ -158,7 +175,10 @@ const ArticleDetails = ({ articleList, categoryList, authorList, handleEdit, uba
         <form noValidate onSubmit={handleSubmit}>
           <TextField
             sx={classes.field}
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={(e) => {
+              setTitle(e.target.value)
+              setTitleError(false)
+            }}
             label="Article Title"
             variant="outlined"
             color="primary"
@@ -175,11 +195,13 @@ const ArticleDetails = ({ articleList, categoryList, authorList, handleEdit, uba
             color="primary"
             fullWidth
             value={description}
-            error={descrptionError}
           />
           <TextField
             sx={classes.field}
-            onChange={(e) => setContent(e.target.value)}
+            onChange={(e) => {
+              setContent(e.target.value)
+              setContentError(false)
+            }}
             label="Content"
             variant="outlined"
             color="primary"
@@ -193,27 +215,45 @@ const ArticleDetails = ({ articleList, categoryList, authorList, handleEdit, uba
           <Autocomplete
             value={author}
             onChange={(event, value) => setAuthor(value)}
-            onInputChange={(event, value) => setInputAuthor(value)}
+            onInputChange={(event, value) => {
+              setInputAuthor(value)
+              setAuthorError(false)
+            }}
             inputValue={inputAuthor}
             value={author}
             sx={classes.field}
             disablePortal
             id="combo-box-demo"
             options={authorOptions}
-            required
-            renderInput={(params) => <TextField {...params} label="Author" />}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label="Author"
+                required
+                error={authorError}
+              />
+            )}
           />
           <Autocomplete
             onChange={(event, value) => setCategory(value)}
-            onInputChange={(event, value) => setInputCategory(value)}
+            onInputChange={(event, value) => {
+              setInputCategory(value)
+              setCategoryError(false)
+            }}
             inputValue={inputCategory}
             value={category}
             sx={classes.field}
             disablePortal
             id="combo-box-demo"
             options={categoryOptions}
-            required
-            renderInput={(params) => <TextField {...params} label="Category" />}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label="Category"
+                required
+                error={categoryError}
+              />
+            )}
           />
           <Button
             sx={{ marginBottom: 10 }}

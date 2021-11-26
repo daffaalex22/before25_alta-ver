@@ -18,7 +18,7 @@ const classes = {
     }
 }
 
-const MoreMenu = ({ articleId, handleEditRoot, ubahArticleRoot, handleDeleteList }) => {
+const MoreMenu = ({ articleId, ubahArticleRoot, handleDeleteList }) => {
     const navigate = useNavigate()
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);

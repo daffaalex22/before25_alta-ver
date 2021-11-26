@@ -18,14 +18,13 @@ const classes = {
 }
 
 
-const ArticleItem = ({ article, handleEdit, ubahArticle, handleDelete }) => {
+const ArticleItem = ({ article, ubahArticle, handleDelete }) => {
     return (
         <Button sx={classes.btn}>
             <Card elevation={2}>
                 <CardHeader
                     action={<MoreMenu
                         articleId={article.id}
-                        handleEditRoot={handleEdit}
                         ubahArticleRoot={ubahArticle}
                         handleDeleteList={handleDelete}
                     />}

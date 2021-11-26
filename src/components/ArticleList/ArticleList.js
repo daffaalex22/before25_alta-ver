@@ -31,8 +31,7 @@ const classes = {
     }
 }
 
-const ArticleList = ({ articleList, categoryList, authorList, editVariables, loadings, handleEdit, ubahArticle, handleDeleteRoot }) => {
-
+const ArticleList = ({ articleList, categoryList, authorList, editVariables, loadings, ubahArticle, handleDeleteRoot }) => {
 
     console.log(loadings)
     const [titleValue, setTitleValue] = useState('')
@@ -221,10 +220,9 @@ const ArticleList = ({ articleList, categoryList, authorList, editVariables, loa
                     className="my-masonry-grid"
                     columnClassName="my-masonry-grid_column">
                     {articleList.map(article => (
-                        <div key={article.id} >
+                        <div key={article.id}>
                             <ArticleItem
                                 article={article}
-                                handleEdit={handleEdit}
                                 ubahArticle={ubahArticle}
                                 handleDelete={handleOpenDeleteDialog}
                             />
@@ -236,13 +234,14 @@ const ArticleList = ({ articleList, categoryList, authorList, editVariables, loa
                     breakpointCols={breakpointColumns}
                     className="my-masonry-grid"
                     columnClassName="my-masonry-grid_column">
-                    {loadingList.map(article => (
-                        <div key={article.id} >
+                    {loadingList.map(load => (
+                        <div key={load} >
                             <LoadingSkeleton />
                         </div>
                     ))}
                 </Masonry>
-            )}
+            )
+            }
 
 
             <DeleteDialog

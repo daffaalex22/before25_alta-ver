@@ -11,7 +11,7 @@ import { Popover } from "@mui/material";
 import { Typography } from "@mui/material";
 import { useNavigate } from "react-router";
 
-const HomeAdmin = ({ articleList, categoryList, authorList, editVariables, allLoading, handleEdit, ubahArticle, handleDeleteRoot }) => {
+const HomeAdmin = ({ articleList, categoryList, authorList, editVariables, allLoading, ubahArticle, handleDeleteRoot }) => {
     const navigate = useNavigate()
     const [anchorEl, setAnchorEl] = useState(null);
 
@@ -30,7 +30,6 @@ const HomeAdmin = ({ articleList, categoryList, authorList, editVariables, allLo
             <Container className="home-admin">
                 <HeaderAdmin />
                 <ArticleList
-                    handleEdit={handleEdit}
                     ubahArticle={ubahArticle}
                     handleDeleteRoot={handleDeleteRoot}
                     articleList={articleList}
