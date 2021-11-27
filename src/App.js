@@ -6,11 +6,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useQuery, useMutation, gql } from "@apollo/client";
 import { useState, useEffect } from "react";
 import { createTheme, ThemeProvider } from '@mui/material'
-import { purple } from '@mui/material/colors'
 import { blue } from '@mui/material/colors';
 import LoadingPage from './components/LoadingPage/LoadingPage';
 import LoadingSkeleton from './components/LoadingSkeleton/LoadingSkeleton';
 import Resources from './pages/Client/Resources/Resources';
+import HeaderClient from './pages/Client/HeaderClient/HeaderClient';
+import ArticleDetailsClient from './pages/Client/ArticleDetailsClient/ArticleDetailsClient';
+import Footer from './components/Footer/Footer';
 
 const theme = createTheme({
   palette: {
@@ -228,8 +230,12 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route exact path="/" element={
-              <Resources />
-            }></Route>
+              <>
+                <HeaderClient />
+                <Footer />
+              </>
+            }>
+            </Route>
             <Route path="/admin" element={
               <HomeAdmin
                 ubahArticle={ubahArticle}
