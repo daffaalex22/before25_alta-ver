@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+1:wght@100;200;300;400;500;600;700;800;900&family=Quicksand:wght@300;400;500;600;700&display=swap');
 
 @font-face {
-  font-family: 'garamond-kursiv-halbfett';
-  src: url('./assets/fonts/Garamond\ Kursiv\ Halbfett/Garamond_Kursiv_Halbfett.ttf');
+  font-family: helve-neue;
+  src: url('./assets/fonts_b25/HelveticaNeue.ttc');
 }
 
 html {
@@ -14,6 +14,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+  /* font-family: helve-neue; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

@@ -1,7 +1,9 @@
 * UI Article Client Page
 * Hasura Article, Article Details Client Page
-* TextEditor
-* Authentication
+* TextEditor AdminPage
+* Authentication/Image Store -> Firebase
+* Context, Global State Management
+* Cleaning Structure
 * Static Pages
 
 [v] Create, Edit, Delete in Admin Page
