@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router";
+import Paper from "@mui/material/Paper";
 
 const dummyTitle = "The Looming mental Health Crisis"
 const dummyPreview = "Lorem ipsum dolor, sit amet consectetur adipisicing elit.Iusto dolorum repudiandae explicabo repellendus commodi natus aliquid veniam omnis ipsum! Ut commodi quibusdam aperiam laborum suscipit enim?Nobis deleniti repudiandae at! Quidem ipsam quibusdam quos repellat cum magnam eius laboriosam, ad obcaecati.Distinctio nam ullam quod modi maxime fugit ut, dignissimos maiores sint architecto sunt atque pariatur, error obcaecati cupiditate eius."
@@ -60,17 +61,19 @@ const ArticlePreview = ({ setOnArticleDetails, setValue }) => {
                     <Box
 
                     >
-                        <Typography
-                            sx={{
-                                textAlign: 'justify'
-                            }}
-                            variant="body2"
-                            color="textPrimary"
-                            border="1px solid black"
-                            p="30px"
-                        >
-                            {dummyPreview}
-                        </Typography>
+                        <Paper>
+                            <Typography
+                                sx={{
+                                    textAlign: 'justify'
+                                }}
+                                variant="body2"
+                                color="textPrimary"
+                                border="1px solid black"
+                                p="30px"
+                            >
+                                {dummyPreview}
+                            </Typography>
+                        </Paper>
                         <Button
                             sx={{
                                 marginLeft: 0,

@@ -26,7 +26,8 @@ const Resources = ({ setOnArticleDetails, setValue }) => {
         <Box
             className="resources"
             sx={{
-                marginTop: '70px'
+                marginTop: '10vh',
+                marginBottom: '6vh'
             }}
         >
             <Grid

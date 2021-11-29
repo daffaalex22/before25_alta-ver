@@ -4,7 +4,6 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Box from '@mui/system/Box';
-import { lineHeight } from '@mui/system';
 
 const classes = {
     pageTitle: {
@@ -45,11 +44,10 @@ const FAQ = () => {
             <Typography sx={classes.pageTitle}>
                 Frequently Asked Questions
             </Typography>
-            <Accordion sx={classes.accordion}>
+            <Accordion sx={classes.accordion} >
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1a-content"
-                    id="panel1a-header"
                 >
                     <Typography variant="h5" sx={classes.accordionSummary}>
                         Lorem ipsum dolor sit amet?
@@ -70,7 +68,6 @@ const FAQ = () => {
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1a-content"
-                    id="panel1a-header"
                 >
                     <Typography variant="h5" sx={classes.accordionSummary}>
                         Lorem ipsum dolor sit amet?
