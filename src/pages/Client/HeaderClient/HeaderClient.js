@@ -9,6 +9,7 @@ import Instagram from '@mui/icons-material/Instagram';
 import LinkedIn from '@mui/icons-material/LinkedIn';
 import Resources from '../Resources/Resources';
 import ArticleDetailsClient from '../ArticleDetailsClient/ArticleDetailsClient'
+import FAQ from '../FAQ/FAQ';
 
 const dimension = {
     navHeight: '10vh'
@@ -152,7 +153,7 @@ const HeaderClient = () => {
                     />
                 </TabPanel>
                 <TabPanel value={value} index={2}>
-                    FAQ
+                    <FAQ />
                 </TabPanel>
                 <TabPanel value={value} index={3}>
                     Contribute
