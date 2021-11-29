@@ -1,8 +1,10 @@
-* UI Article Client Page
 * Hasura Article, Article Details Client Page
-* TextEditor
-* Authentication
+* Authentication/Image Store -> Firebase
+* Context, Global State Management
+* Cleaning Structure
 * Static Pages
 
+[V] TextEditor AdminPage [ADA ERROR DR TEXTED]
 [v] Create, Edit, Delete in Admin Page
 [V] Filter & Search fix Admin
+[V] UI Article Client Page Core

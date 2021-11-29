@@ -32,7 +32,7 @@ const MoreMenu = ({ articleId, ubahArticleRoot, handleDeleteList }) => {
     const handleEdit = () => {
         setAnchorEl(null);
         console.log('Edit')
-        navigate('/articles/' + articleId)
+        navigate('/admin/articles/' + articleId)
     }
 
     const handleDelete = () => {

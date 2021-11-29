@@ -1,5 +1,5 @@
 import HeaderAdmin from "../../components/HeaderAdmin/HeaderAdmin";
-// import GET_ARTICLE_BY_ID from "../../gqlQueries";
+import TextEditor from "../../components/TextEditor/TextEditor";
 import { useHistory, useParams } from "react-router";
 import { gql, useQuery } from "@apollo/client";
 import { useState, useEffect } from "react";
@@ -10,6 +10,9 @@ import Button from '@mui/material/Button'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { useNavigate } from "react-router";
 import LoadingPage from "../../components/LoadingPage/LoadingPage";
+import { EditorState, convertToRaw, ContentState } from "draft-js";
+import draftToHtml from "draftjs-to-html";
+import htmlToDraft from 'html-to-draftjs';
 
 const classes = {
   field: {
@@ -53,17 +56,38 @@ const ArticleDetails = ({ articleList, categoryList, authorList, ubahArticle, ad
 
   const [article, setArticle] = useState({})
   const [title, setTitle] = useState('')
-  const [content, setContent] = useState('')
+  // const [content, setContent] = useState('')
   const [description, setDescription] = useState('')
   const [author, setAuthor] = useState('James Clear')
   const [category, setCategory] = useState('General')
   const [inputAuthor, setInputAuthor] = useState('James Clear')
   const [inputCategory, setInputCategory] = useState('General')
   const [titleError, setTitleError] = useState(false)
-  const [contentError, setContentError] = useState(false)
+  // const [contentError, setContentError] = useState(false)
   const [authorError, setAuthorError] = useState(false)
   const [categoryError, setCategoryError] = useState(false)
+  const [editorState, setEditorState] = useState(EditorState.createEmpty())
+  const [htmlFromDB, setHtmlFromDB] = useState('')
+  const [contentBlock, setContentBlock] = useState(null)
+  const theHtml = draftToHtml(convertToRaw(editorState.getCurrentContent()))
   // const [descrptionError, setDescriptionError] = useState(false)
+
+  useEffect(() => {
+    if (htmlFromDB) {
+      setContentBlock(htmlToDraft(htmlFromDB))
+      console.log('kondisi truthy htmlfromdb')
+    }
+    console.log('contentBlock hFDB:', contentBlock)
+  }, [htmlFromDB])
+
+  useEffect(() => {
+    if (contentBlock) {
+      const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
+      setEditorState(EditorState.createWithContent(contentState))
+      console.log('kondisi truthy content block')
+    }
+    console.log('contentBlock CB:', contentBlock)
+  }, [contentBlock])
 
   const { id } = useParams();
   const [idNumber, setIdNumber] = useState(Number(id))
@@ -75,7 +99,7 @@ const ArticleDetails = ({ articleList, categoryList, authorList, ubahArticle, ad
       setIsEditing(false)
     }
     setTitleError(false)
-    setContentError(false)
+    // setContentError(false)
     setAuthorError(false)
     setCategoryError(false)
   }, [])
@@ -97,12 +121,12 @@ const ArticleDetails = ({ articleList, categoryList, authorList, ubahArticle, ad
   const handleSubmit = (e) => {
     e.preventDefault();
     setTitleError(false)
-    setContentError(false)
+    // setContentError(false)
     setAuthorError(false)
     setCategoryError(false)
-    if (!title || !content || !category || !author) {
+    if (!title || /*!content ||*/ !category || !author) {
       if (!title) setTitleError(true)
-      if (!content) setContentError(true)
+      // if (!content) setContentError(true)
       if (!author) setAuthorError(true)
       if (!category) setCategoryError(true)
     } else if (isEditing && !isNaN(idNumber)) {
@@ -115,17 +139,17 @@ const ArticleDetails = ({ articleList, categoryList, authorList, ubahArticle, ad
         category_id: editedCategory.id,
         title: title,
         description: description,
-        content: content,
+        content: theHtml,
       }
       ubahArticle(variableEdit)
       setTitle('')
-      setContent('')
+      setEditorState(EditorState.createEmpty())
       setAuthor('James Clear')
       setInputAuthor('James Clear')
       setCategory('General')
       setInputCategory('General')
       setIsEditing(false)
-      navigate('/')
+      navigate('/admin')
     }
     else {
       // console.log("createArticle")
@@ -136,16 +160,16 @@ const ArticleDetails = ({ articleList, categoryList, authorList, ubahArticle, ad
         category_id: addedCategory.id,
         title: title,
         description: description,
-        content: content,
+        content: theHtml,
       }
       addAnArticle(variableAdd)
       setTitle('')
-      setContent('')
+      setEditorState(EditorState.createEmpty())
       setAuthor('James Clear')
       setInputAuthor('James Clear')
       setCategory('General')
       setInputCategory('General')
-      navigate('/')
+      navigate('/admin')
     }
   }
 
@@ -156,8 +180,9 @@ const ArticleDetails = ({ articleList, categoryList, authorList, ubahArticle, ad
   useEffect(() => {
     if (article && article.author && article.category) {
       setTitle(article?.title)
-      setDescription(article?.description)
-      setContent(article?.content)
+      if (article.description) setDescription(article?.description)
+      // setContent(article?.content)
+      setHtmlFromDB(article?.content)
       setAuthor(article?.author?.name)
       setCategory(article?.category?.name)
       setInputAuthor(article?.author?.name)
@@ -175,6 +200,7 @@ const ArticleDetails = ({ articleList, categoryList, authorList, ubahArticle, ad
         <form noValidate onSubmit={handleSubmit}>
           <TextField
             sx={classes.field}
+            value={title}
             onChange={(e) => {
               setTitle(e.target.value)
               setTitleError(false)
@@ -183,20 +209,24 @@ const ArticleDetails = ({ articleList, categoryList, authorList, ubahArticle, ad
             variant="outlined"
             color="primary"
             fullWidth
-            value={title}
             required
             error={titleError}
           />
           <TextField
             sx={classes.field}
+            value={description}
             onChange={(e) => setDescription(e.target.value)}
             label="Description"
             variant="outlined"
             color="primary"
             fullWidth
-            value={description}
           />
-          <TextField
+          <TextEditor
+            htmlFromDB={htmlFromDB}
+            editorState={editorState}
+            setEditorState={setEditorState}
+          />
+          {/* <TextField
             sx={classes.field}
             onChange={(e) => {
               setContent(e.target.value)
@@ -211,15 +241,15 @@ const ArticleDetails = ({ articleList, categoryList, authorList, ubahArticle, ad
             required
             value={content}
             error={contentError}
-          />
+          /> */}
           <Autocomplete
             value={author}
+            inputValue={inputAuthor}
             onChange={(event, value) => setAuthor(value)}
             onInputChange={(event, value) => {
               setInputAuthor(value)
               setAuthorError(false)
             }}
-            inputValue={inputAuthor}
             value={author}
             sx={classes.field}
             disablePortal
@@ -228,6 +258,8 @@ const ArticleDetails = ({ articleList, categoryList, authorList, ubahArticle, ad
             renderInput={(params) => (
               <TextField
                 {...params}
+                value={inputAuthor}
+                onChange={(e) => setInputAuthor(e.target.value)}
                 label="Author"
                 required
                 error={authorError}
@@ -235,13 +267,13 @@ const ArticleDetails = ({ articleList, categoryList, authorList, ubahArticle, ad
             )}
           />
           <Autocomplete
+            inputValue={inputCategory}
+            value={category}
             onChange={(event, value) => setCategory(value)}
             onInputChange={(event, value) => {
               setInputCategory(value)
               setCategoryError(false)
             }}
-            inputValue={inputCategory}
-            value={category}
             sx={classes.field}
             disablePortal
             id="combo-box-demo"
@@ -249,6 +281,8 @@ const ArticleDetails = ({ articleList, categoryList, authorList, ubahArticle, ad
             renderInput={(params) => (
               <TextField
                 {...params}
+                value={inputCategory}
+                onChange={(e) => setInputCategory(e.target.value)}
                 label="Category"
                 required
                 error={categoryError}

@@ -54,7 +54,7 @@ const HomeAdmin = ({ articleList, categoryList, authorList, editVariables, allLo
                 aria-haspopup="true"
                 onMouseEnter={handlePopoverOpen}
                 onMouseLeave={handlePopoverClose}
-                onClick={() => navigate('/add-article')}
+                onClick={() => navigate('/admin/add-article')}
             >
                 <AddIcon />
             </Fab>
