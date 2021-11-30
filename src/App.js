@@ -15,6 +15,7 @@ import ArticleDetailsClient from './pages/Client/ArticleDetailsClient/ArticleDet
 import Footer from './components/Footer/Footer';
 import { GET_ALL_ARTICLES, GET_ALL_AUTHORS, GET_ALL_CATEGORIES } from './gql/queries'
 import { ADD_ARTICLE, EDIT_ARTICLE, DELETE_ARTICLE_BY_ID } from './gql/mutations'
+import LoginPage from './pages/Admin/LoginPage/LoginPage';
 
 const theme = createTheme({
   palette: {
@@ -217,6 +218,8 @@ function App() {
                 authorList={authorList}
                 addAnArticle={addAnArticle}
               />}></Route>
+            <Route path="/admin/login" element={
+              <LoginPage />}></Route>
             <Route path="*" element={<NotFound />}></Route>
           </Routes>
         </BrowserRouter>
