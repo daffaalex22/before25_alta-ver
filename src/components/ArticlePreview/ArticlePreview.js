@@ -19,75 +19,72 @@ const ArticlePreview = ({ setOnArticleDetails, setValue }) => {
     }
 
     return (
-        <Grid item xs={11} lg={5}>
+        <Grid
+            item
+            container
+            xs={11}
+            lg={5}
+            spacing={3}
+            height="fit-content"
+            direction="column"
+            padding="30px 10px"
+        >
+            <Grid item xs={1}>
+                <Typography
+                    sx={{
+                        textAlign: 'left'
+                    }}
+                    variant="h6"
+                    component="p"
+                    color="textPrimary"
+                >
+                    01
+                </Typography>
+            </Grid>
+            <Grid item xs={2}>
+                <Typography
+                    sx={{
+                        textAlign: 'justify'
+                    }}
+                    variant="h4"
+                    component="p"
+                    color="textPrimary"
+                >
+                    {dummyTitle}
+                </Typography>
+            </Grid>
             <Grid
-                container
-                spacing={3}
-                height="fit-content"
-                direction="column"
-                padding="30px 10px"
+                item
+                xs={7}
+                sx={{
+                    justifyContent: 'left'
+                }}
             >
-                <Grid item xs={1}>
-                    <Typography
-                        sx={{
-                            textAlign: 'left'
-                        }}
-                        variant="h6"
-                        component="p"
-                        color="textPrimary"
-                    >
-                        01
-                    </Typography>
-                </Grid>
-                <Grid item xs={2}>
+                <Paper>
                     <Typography
                         sx={{
                             textAlign: 'justify'
                         }}
-                        variant="h4"
-                        component="p"
+                        variant="body2"
                         color="textPrimary"
+                        border="1px solid black"
+                        p="30px"
                     >
-                        {dummyTitle}
+                        {dummyPreview}
                     </Typography>
-                </Grid>
-                <Grid
-                    item
-                    xs={7}
+                </Paper>
+                <Button
                     sx={{
-                        justifyContent: 'left'
+                        marginLeft: 0,
+                        textTransform: 'none',
+                        marginTop: 5,
+                        padding: '15px 40px'
                     }}
+                    variant="contained"
+                    onClick={handleSeeMore}
                 >
-                    <Box
-
-                    >
-                        <Paper>
-                            <Typography
-                                sx={{
-                                    textAlign: 'justify'
-                                }}
-                                variant="body2"
-                                color="textPrimary"
-                                border="1px solid black"
-                                p="30px"
-                            >
-                                {dummyPreview}
-                            </Typography>
-                        </Paper>
-                        <Button
-                            sx={{
-                                marginLeft: 0,
-                                textTransform: 'none',
-                                marginTop: 5,
-                                padding: '15px 40px'
-                            }}
-                            variant="contained"
-                            onClick={handleSeeMore}
-                        >
-                            See More
-                        </Button>
-                    </Box>
-                </Grid>
+                    See More
+                </Button>
             </Grid>
         </Grid>
     );

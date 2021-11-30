@@ -1,3 +1,4 @@
-Navbar ketutupan pas scrolling ke bawah banget,
-TextEditor errornya tp darisananya,
 Masukkin Font masih error
+
+[Harusnya Gapapa] TextEditor ada errornya tp darisananya
+[Aman} Navbar ketutupan pas scrolling ke bawah banget

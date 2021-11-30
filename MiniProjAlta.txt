@@ -1,8 +1,11 @@
-* Hasura Article, Article Details Client Page
 * Authentication/Image Store -> Firebase
+* Routing Client
+* Hasura Article, Article Details Client Page
 * Context, Global State Management
 * Cleaning Structure
-* Static Pages
+[50%] Static Pages
+* Dark Mode
+* Unit Testing
 
 [V] TextEditor AdminPage [ADA ERROR DR TEXTED]
 [v] Create, Edit, Delete in Admin Page

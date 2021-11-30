@@ -24,7 +24,8 @@ const classes = {
         alignItems: 'flex-end',
         position: 'fixed',
         backgroundColor: '#ffffff',
-        width: '100%'
+        width: '100%',
+        zIndex: 1000
     },
     tab: {
         textTransform: 'none',

@@ -4,201 +4,105 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Paper from "@mui/material/Paper";
-
-const dummyTitle = "The Looming mental Health Crisis"
-const dummyPreview = "Lorem ipsum dolor, sit amet consectetur adipisicing elit.Iusto dolorum repudiandae explicabo repellendus commodi natus aliquid veniam omnis ipsum! Ut commodi quibusdam aperiam laborum suscipit enim?Nobis deleniti repudiandae at! Quidem ipsam quibusdam quos repellat cum magnam eius laboriosam, ad obcaecati.Distinctio nam ullam quod modi maxime fugit ut, dignissimos maiores sint architecto sunt atque pariatur, error obcaecati cupiditate eius."
-
-
+import { GET_ALL_ARTICLES } from "../../gql/queries";
+import { useQuery, useMutation } from "@apollo/client";
+import { useState, useEffect } from "react";
+import Skeleton from "@mui/material/Skeleton";
 
 const TitlePreview = () => {
+    const [searchInput, setSearchInput] = useState('')
+    const [variables, setVariables] = useState({
+        variables: {
+            "title": {
+                "_iregex": ""
+            },
+            "catName": {},
+            "authorName": {}
+        }
+    }
+    );
+
+    const {
+        loading: allLoading,
+        error: allError,
+        data: allData,
+        refetch: refetchAll
+    } = useQuery(GET_ALL_ARTICLES, variables);
+
+    const [articleList, setArticleList] = useState([])
+
+    const handleInputChange = (e) => {
+        setVariables({
+            variables: {
+                "title": {
+                    "_iregex": e.target.value
+                },
+                "catName": {},
+                "authorName": {}
+            }
+        })
+        setSearchInput(e.target.value)
+    }
+
+    useEffect(() => {
+        if (allData) {
+            setArticleList(allData?.before25_articles);
+        }
+    }, [allData])
+
+    if (allError) return allError.message
+
     return (
-        <Grid
-            item
-            xs={11}
-            lg={5}
-        >
+        <>
             <Grid
+                item
                 container
                 spacing={2}
-                sx={{
-                    height: "80vh",
-                    overflow: 'auto'
-                }}
+                xs={11}
+                lg={5}
             >
-                <Grid item
-                    xs={12}
+                <TextField
+                    fullWidth
+                    label="Search Article"
+                    variant="filled"
+                    value={searchInput}
                     sx={{
-                        marginBottom: "8%",
-                        marginRight: '10px'
+                        margin: '25px 0',
                     }}
-                >
-                    <TextField
-                        fullWidth
-                        label="Search Article"
-                    />
-                </Grid>
-                <Grid item xs={12}>
-                    <Paper sx={{
-                        marginBottom: '10px',
-                        marginRight: '10px'
-                    }}
-                    >
-                        <Typography
-                            sx={{
-                                textAlign: 'left',
+                    onChange={handleInputChange}
+                />
+                <Box sx={{
+                    height: "65vh",
+                    width: "100%",
+                    overflow: 'auto'
+                }}>
+                    {articleList.map((article) => (
+                        <Grid item xs={12} key={article.id}>
+                            <Paper sx={{
+                                marginBottom: '10px',
+                                marginRight: '15px'
                             }}
-                            variant="h6"
-                            component="p"
-                            color="textPrimary"
-                            border="1px solid black"
-                            p="15px 20px"
-                        >
-                            {dummyTitle}
-                        </Typography>
-                    </Paper>
-                </Grid>
-                <Grid item xs={12}>
-                    <Paper sx={{
-                        marginBottom: '10px',
-                        marginRight: '10px'
-                    }}
-                    >
-                        <Typography
-                            sx={{
-                                textAlign: 'left',
-                            }}
-                            variant="h6"
-                            component="p"
-                            color="textPrimary"
-                            border="1px solid black"
-                            p="15px 20px"
-                        >
-                            {dummyTitle}
-                        </Typography>
-                    </Paper>
-                </Grid>
-                <Grid item xs={12}>
-                    <Paper sx={{
-                        marginBottom: '10px',
-                        marginRight: '10px'
-                    }}
-                    >
-                        <Typography
-                            sx={{
-                                textAlign: 'left',
-                            }}
-                            variant="h6"
-                            component="p"
-                            color="textPrimary"
-                            border="1px solid black"
-                            p="15px 20px"
-                        >
-                            {dummyTitle}
-                        </Typography>
-                    </Paper>
-                </Grid>
-                <Grid item xs={12}>
-                    <Paper sx={{
-                        marginBottom: '10px',
-                        marginRight: '10px'
-                    }}
-                    >
-                        <Typography
-                            sx={{
-                                textAlign: 'left',
-                            }}
-                            variant="h6"
-                            component="p"
-                            color="textPrimary"
-                            border="1px solid black"
-                            p="15px 20px"
-                        >
-                            {dummyTitle}
-                        </Typography>
-                    </Paper>
-                </Grid>
-                <Grid item xs={12}>
-                    <Paper sx={{
-                        marginBottom: '10px',
-                        marginRight: '10px'
-                    }}
-                    >
-                        <Typography
-                            sx={{
-                                textAlign: 'left',
-                            }}
-                            variant="h6"
-                            component="p"
-                            color="textPrimary"
-                            border="1px solid black"
-                            p="15px 20px"
-                        >
-                            {dummyTitle}
-                        </Typography>
-                    </Paper>
-                </Grid>
-                <Grid item xs={12}>
-                    <Paper sx={{
-                        marginBottom: '10px',
-                        marginRight: '10px'
-                    }}
-                    >
-                        <Typography
-                            sx={{
-                                textAlign: 'left',
-                            }}
-                            variant="h6"
-                            component="p"
-                            color="textPrimary"
-                            border="1px solid black"
-                            p="15px 20px"
-                        >
-                            {dummyTitle}
-                        </Typography>
-                    </Paper>
-                </Grid>
-                <Grid item xs={12}>
-                    <Paper sx={{
-                        marginBottom: '10px',
-                        marginRight: '10px'
-                    }}
-                    >
-                        <Typography
-                            sx={{
-                                textAlign: 'left',
-                            }}
-                            variant="h6"
-                            component="p"
-                            color="textPrimary"
-                            border="1px solid black"
-                            p="15px 20px"
-                        >
-                            {dummyTitle}
-                        </Typography>
-                    </Paper>
-                </Grid>
-                <Grid item xs={12}>
-                    <Paper sx={{
-                        marginBottom: '10px',
-                        marginRight: '10px'
-                    }}
-                    >
-                        <Typography
-                            sx={{
-                                textAlign: 'left',
-                            }}
-                            variant="h6"
-                            component="p"
-                            color="textPrimary"
-                            border="1px solid black"
-                            p="15px 20px"
-                        >
-                            {dummyTitle}
-                        </Typography>
-                    </Paper>
-                </Grid>
+                            >
+                                <Typography
+                                    sx={{
+                                        textAlign: 'left',
+                                        fontWeight: 600,
+                                        fontStyle: 'italic'
+                                    }}
+                                    variant="h6"
+                                    component="p"
+                                    color="textPrimary"
+                                    border="1px solid black"
+                                    p="15px 20px"
+                                >
+                                    {!allLoading ? article.title : <Skeleton />}
+                                </Typography>
+                            </Paper>
+                        </Grid>
+                    ))}
+                </Box>
             </Grid>
-        </Grid>
+        </>
     );
 }
 
