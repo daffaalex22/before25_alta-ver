@@ -1,0 +1,4 @@
+Masukkin Font masih error
+
+[Harusnya Gapapa] TextEditor ada errornya tp darisananya
+[Aman} Navbar ketutupan pas scrolling ke bawah banget
