@@ -4,11 +4,27 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router";
 import Paper from "@mui/material/Paper";
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 const dummyTitle = "The Looming mental Health Crisis"
 const dummyPreview = "Lorem ipsum dolor, sit amet consectetur adipisicing elit.Iusto dolorum repudiandae explicabo repellendus commodi natus aliquid veniam omnis ipsum! Ut commodi quibusdam aperiam laborum suscipit enim?Nobis deleniti repudiandae at! Quidem ipsam quibusdam quos repellat cum magnam eius laboriosam, ad obcaecati.Distinctio nam ullam quod modi maxime fugit ut, dignissimos maiores sint architecto sunt atque pariatur, error obcaecati cupiditate eius."
 
-const ArticlePreview = ({ setOnArticleDetails, setValue }) => {
+const classes = {
+    btn: {
+        marginLeft: 0,
+        textTransform: 'none',
+        marginTop: 5,
+        padding: '15px 40px',
+        borderRadius: 0,
+        '&:hover': {
+            backgroundColor: 'white',
+            color: 'black',
+            border: '1.5px solid black'
+        }
+    }
+}
+
+const ArticlePreview = ({ setOnArticleDetails, setValue, article }) => {
 
     const navigate = useNavigate();
 
@@ -27,7 +43,10 @@ const ArticlePreview = ({ setOnArticleDetails, setValue }) => {
             spacing={3}
             height="fit-content"
             direction="column"
-            padding="30px 10px"
+            padding="30px 30px"
+            sx={{
+                // height: '70vh'
+            }}
         >
             <Grid item xs={1}>
                 <Typography
@@ -44,13 +63,15 @@ const ArticlePreview = ({ setOnArticleDetails, setValue }) => {
             <Grid item xs={2}>
                 <Typography
                     sx={{
-                        textAlign: 'justify'
+                        textAlign: 'justify',
+                        fontStyle: 'italic',
+                        fontWeight: 900,
                     }}
                     variant="h4"
                     component="p"
                     color="textPrimary"
                 >
-                    {dummyTitle}
+                    {article?.title}
                 </Typography>
             </Grid>
             <Grid
@@ -60,26 +81,28 @@ const ArticlePreview = ({ setOnArticleDetails, setValue }) => {
                     justifyContent: 'left'
                 }}
             >
-                <Paper>
+                <Paper sx={{
+
+                }}>
                     <Typography
                         sx={{
-                            textAlign: 'justify'
+                            textAlign: 'justify',
+                            height: '40vh',
+                            overflow: 'auto'
                         }}
                         variant="body2"
                         color="textPrimary"
                         border="1px solid black"
-                        p="30px"
+                        p="30px 30px"
                     >
-                        {dummyPreview}
+                        <em>Written by {article?.author?.name}</em>
+                        <br />
+                        <br />
+                        {ReactHtmlParser(article?.content?.slice(0, 520) + '....')}
                     </Typography>
                 </Paper>
                 <Button
-                    sx={{
-                        marginLeft: 0,
-                        textTransform: 'none',
-                        marginTop: 5,
-                        padding: '15px 40px'
-                    }}
+                    sx={classes.btn}
                     variant="contained"
                     onClick={handleSeeMore}
                 >
