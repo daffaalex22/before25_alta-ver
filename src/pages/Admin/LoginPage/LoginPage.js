@@ -25,7 +25,7 @@ const LoginPage = () => {
     const passwordRef = useRef()
     const navigate = useNavigate()
 
-    const { login } = useAuth()
+    const { login, overridePersistence } = useAuth()
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
 
@@ -51,6 +51,14 @@ const LoginPage = () => {
                 console.log(err.message)
                 setError(err.message)
             })
+        // overridePersistence()
+        //     .then(() => {
+        //         return login(emailRef.current.value, passwordRef.current.value)
+        //     })
+        //     .catch((error) => {
+        //         const errorCode = error.code;
+        //         const errorMessage = error.message;
+        //     });
         setLoading(false)
     }
 

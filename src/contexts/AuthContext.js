@@ -7,6 +7,7 @@ import {
     signOut,
     sendPasswordResetEmail,
 } from '@firebase/auth';
+import { getAuth, setPersistence, browserSessionPersistence, browserLocalPersistence } from "firebase/auth";
 
 const AuthContext = createContext();
 
@@ -31,19 +32,25 @@ const AuthProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
+        setPersistence(auth, browserLocalPersistence)
+        onAuthStateChanged(auth, (user) => {
             setCurrentUser(user)
             setLoading(false)
         })
-
-        return unsubscribe
+        console.log('current user', currentUser)
     }, [])
+
+
+    function overridePersistence() {
+        return setPersistence(auth, browserSessionPersistence)
+    }
 
     const value = {
         currentUser,
         login,
         logout,
-        resetPassword
+        resetPassword,
+        overridePersistence
     }
 
     return (
