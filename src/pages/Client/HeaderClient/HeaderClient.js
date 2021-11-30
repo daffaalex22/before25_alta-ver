@@ -11,6 +11,10 @@ import Resources from '../Resources/Resources';
 import ArticleDetailsClient from '../ArticleDetailsClient/ArticleDetailsClient'
 import FAQ from '../FAQ/FAQ';
 import Contribute from '../Contribute/Contribute';
+import { useNavigate } from 'react-router';
+import { Link } from '@mui/material';
+import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const dimension = {
     navHeight: '10vh'
@@ -80,13 +84,42 @@ function a11yProps(index) {
     };
 }
 
-const HeaderClient = () => {
-    const [value, setValue] = useState(0);
+const HeaderClient = ({ value, setValue }) => {
     const [onArticleDetails, setOnArticleDetails] = useState(false)
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const handleChange = (event, newValue) => {
+        navigate(valueToPathname[newValue])
         setValue(newValue)
     };
+
+    useEffect(() => {
+        if (location.pathname.startsWith('/resources/articles/')) {
+            setOnArticleDetails(true)
+            setValue(4)
+        } else {
+            setValue(pathnameToValue[location.pathname])
+        }
+
+        console.log(location.pathname)
+    }, [])
+
+    const pathnameToValue = {
+        '/home': 0,
+        '/resources': 1,
+        '/faq': 2,
+        '/contribute': 3,
+        '/resources/articles/:id': 4
+    }
+
+    const valueToPathname = {
+        0: '/home',
+        1: '/resources',
+        2: '/faq',
+        3: '/contribute',
+        4: '/resources/articles/:id'
+    }
 
     const handleClickTab = () => {
         setOnArticleDetails(false)
@@ -112,25 +145,25 @@ const HeaderClient = () => {
                             label="Home"
                             {...a11yProps(0)}
                             sx={classes.tab}
-                            onClick={() => setOnArticleDetails(false)}
+                            onClick={handleClickTab}
                         />
                         <Tab
                             label="Resources"
                             {...a11yProps(1)}
                             sx={classes.tab}
-                            onClick={() => setOnArticleDetails(false)}
+                            onClick={handleClickTab}
                         />
                         <Tab
                             label="FAQ"
                             {...a11yProps(2)}
                             sx={classes.tab}
-                            onClick={() => setOnArticleDetails(false)}
+                            onClick={handleClickTab}
                         />
                         <Tab
                             label="Contribute"
                             {...a11yProps(3)}
                             sx={classes.tab}
-                            onClick={() => setOnArticleDetails(false)}
+                            onClick={handleClickTab}
                         />
                         {onArticleDetails && (
                             <Tab

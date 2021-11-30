@@ -1,6 +1,6 @@
 import './App.css';
 import HomeAdmin from './pages/Admin/HomeAdmin/HomeAdmin';
-import ArticleDetails from './pages/Admin/ArticleDetails';
+import ArticleDetails from './pages/Admin/ArticleDetails/ArticleDetails';
 import NotFound from './pages/NotFound/NotFound';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useQuery, useMutation, gql } from "@apollo/client";
@@ -104,8 +104,8 @@ function App() {
   const [categoryList, setCategoryList] = useState([])
   const [authorList, setAuthorList] = useState([])
 
-  // const [isEditing, setIsEditing] = useState(false);
-  // const [editID, setEditID] = useState(0);
+  const [value, setValue] = useState(0);
+
 
   const ubahArticle = variableEdit => {
     editArticle({ variables: variableEdit });
@@ -150,14 +150,44 @@ function App() {
   if (deleteLoading) return <LoadingPage />
   if (deleteError) return <div>{`${deleteError.message}`}</div>
 
+
+
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
         <BrowserRouter>
           <Routes>
-            <Route exact path="/" element={
+            <Route path="/home" element={
               <>
-                <HeaderClient />
+                <HeaderClient value={value} setValue={setValue} />
+                <Footer />
+              </>
+            }>
+            </Route>
+            <Route exact path="/resources" element={
+              <>
+                <HeaderClient value={value} setValue={setValue} />
+                <Footer />
+              </>
+            }>
+            </Route>
+            <Route path="/faq" element={
+              <>
+                <HeaderClient value={value} setValue={setValue} />
+                <Footer />
+              </>
+            }>
+            </Route>
+            <Route path="/contribute" element={
+              <>
+                <HeaderClient value={value} setValue={setValue} />
+                <Footer />
+              </>
+            }>
+            </Route>
+            <Route exact path="/resources/articles/:id" element={
+              <>
+                <HeaderClient value={value} setValue={setValue} />
                 <Footer />
               </>
             }>

@@ -1,5 +1,5 @@
-import HeaderAdmin from "../../components/HeaderAdmin/HeaderAdmin";
-import TextEditor from "../../components/TextEditor/TextEditor";
+import HeaderAdmin from "../../../components/HeaderAdmin/HeaderAdmin";
+import TextEditor from "../../../components/TextEditor/TextEditor";
 import { useHistory, useParams } from "react-router";
 import { gql, useQuery } from "@apollo/client";
 import { useState, useEffect } from "react";
@@ -9,10 +9,11 @@ import Autocomplete from '@mui/material/Autocomplete';
 import Button from '@mui/material/Button'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { useNavigate } from "react-router";
-import LoadingPage from "../../components/LoadingPage/LoadingPage";
+import LoadingPage from "../../../components/LoadingPage/LoadingPage";
 import { EditorState, convertToRaw, ContentState } from "draft-js";
 import draftToHtml from "draftjs-to-html";
 import htmlToDraft from 'html-to-draftjs';
+import { GET_ARTICLE_BY_ID } from '../../../gql/queries'
 
 const classes = {
   field: {
@@ -24,25 +25,6 @@ const classes = {
 }
 
 const ArticleDetails = ({ articleList, categoryList, authorList, ubahArticle, addAnArticle }) => {
-  const GET_ARTICLE_BY_ID = gql`query GetArticleById($id: Int! = 3) {
-    before25_articles_by_pk(id: $id) {
-      author {
-        name
-        id
-      }
-      category {
-        name
-        id
-      }
-      content
-      created_at
-      description
-      id
-      title
-      updated_at
-    }
-  }`
-
   const navigate = useNavigate()
 
   const categoryOptions = categoryList?.map((category) => {

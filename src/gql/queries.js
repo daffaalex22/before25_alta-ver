@@ -37,4 +37,23 @@ const GET_ALL_CATEGORIES = gql`query getAllCategories {
     }
   }`
 
-export { GET_ALL_ARTICLES, GET_ALL_AUTHORS, GET_ALL_CATEGORIES }
+const GET_ARTICLE_BY_ID = gql`query GetArticleById($id: Int!) {
+    before25_articles_by_pk(id: $id) {
+      author {
+        name
+        id
+      }
+      category {
+        name
+        id
+      }
+      content
+      created_at
+      description
+      id
+      title
+      updated_at
+    }
+  }`
+
+export { GET_ALL_ARTICLES, GET_ALL_AUTHORS, GET_ALL_CATEGORIES, GET_ARTICLE_BY_ID }

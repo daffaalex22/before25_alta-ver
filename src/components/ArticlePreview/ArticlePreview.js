@@ -31,6 +31,7 @@ const ArticlePreview = ({ setOnArticleDetails, setValue, article }) => {
     const handleSeeMore = async () => {
         await setOnArticleDetails(true)
         setValue(4)
+        navigate('/resources/articles/' + article.id)
         console.log('See More')
     }
 

@@ -12,7 +12,6 @@ import TitlePreviewItem from "../TitlePreviewItem/TitlePreviewItem";
 const TitlePreview = ({ defaultArticleList, setTitlePreviewed }) => {
     const [searchInput, setSearchInput] = useState('')
     const [articleList, setArticleList] = useState([])
-    // const [shownArticles, setShownArticles] = useState(defaultArticleList)
 
     const [variables, setVariables] = useState({
         variables: {
@@ -37,24 +36,6 @@ const TitlePreview = ({ defaultArticleList, setTitlePreviewed }) => {
             setArticleList(allData?.before25_articles);
         }
     }, [allData])
-
-    // useEffect(() => {
-    //     if (searchInput) {
-    //         setShownArticles(articleList)
-    //         console.log('input dianggat true')
-    //     } else {
-    //         setShownArticles(defaultArticleList)
-    //         console.log('input dianggat false')
-    //     }
-
-    // }, [searchInput])
-
-    // useEffect(() => {
-    //     if (!searchInput) {
-    //         setShownArticles(defaultArticleList)
-    //         console.log('input dianggat false')
-    //     }
-    // }, [defaultArticleList])
 
     if (allError) return allError.message
 
