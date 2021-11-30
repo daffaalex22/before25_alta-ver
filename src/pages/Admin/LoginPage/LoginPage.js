@@ -15,6 +15,9 @@ import IconButton from "@mui/material/IconButton";
 import { useState } from "react";
 import { useRef } from "react";
 import { useNavigate } from "react-router";
+import { useAuth } from '../../../contexts/AuthContext'
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 
 const LoginPage = () => {
     const [showPassword, setShowPassword] = useState(false)
@@ -22,6 +25,7 @@ const LoginPage = () => {
     const passwordRef = useRef()
     const navigate = useNavigate()
 
+    const { login } = useAuth()
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
 
@@ -32,6 +36,23 @@ const LoginPage = () => {
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        setError('')
+        setLoading(true)
+        login(emailRef.current.value, passwordRef.current.value)
+            .then((cred) => {
+                console.log('user', cred, 'has logged in')
+                navigate('/admin')
+            })
+            .catch((err) => {
+                console.log(err.message)
+                setError(err.message)
+            })
+        setLoading(false)
+    }
 
     return (
         <Container>
@@ -60,7 +81,22 @@ const LoginPage = () => {
                                 Sign In
                             </Typography>
                             <br />
-                            <form noValidate>
+                            {error ? (
+                                <Alert
+                                    severity="error"
+                                    sx={{
+                                        width: '84%',
+                                        marginBottom: '30px',
+                                        margin: '0 auto',
+                                        textAlign: 'center'
+                                    }}
+                                >
+                                    <AlertTitle>{error}</AlertTitle>
+                                </Alert>
+                            ) : null}
+
+                            <br />
+                            <form noValidate onSubmit={handleSubmit}>
                                 <TextField
                                     label="Email"
                                     sx={{
