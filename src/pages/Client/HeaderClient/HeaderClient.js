@@ -11,6 +11,7 @@ import Resources from '../Resources/Resources';
 import ArticleDetailsClient from '../ArticleDetailsClient/ArticleDetailsClient'
 import FAQ from '../FAQ/FAQ';
 import Contribute from '../Contribute/Contribute';
+import Home from '../Home/Home';
 import { useNavigate } from 'react-router';
 import { Link } from '@mui/material';
 import { useLocation } from 'react-router-dom';
@@ -127,13 +128,14 @@ const HeaderClient = ({ value, setValue }) => {
 
     return (
         <Container>
-            <Box sx={{ width: '100%' }}>
+            <Box sx={{ width: '100%', padding: 0 }}>
                 <Box
                     sx={{
                         borderBottom: 1,
                         borderColor: 'divider',
                         height: '500',
-                        width: '100%'
+                        width: '100%',
+                        padding: 0
                     }}>
                     <Tabs
                         value={value}
@@ -179,7 +181,7 @@ const HeaderClient = ({ value, setValue }) => {
                     </Tabs>
                 </Box>
                 <TabPanel value={value} index={0}>
-                    HOME
+                    <Home />
                 </TabPanel>
                 <TabPanel value={value} index={1}>
                     <Resources

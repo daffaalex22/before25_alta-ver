@@ -65,6 +65,10 @@ const TitlePreview = ({ defaultArticleList, setTitlePreviewed }) => {
                 spacing={2}
                 xs={11}
                 lg={5}
+                // alignItems='flex-start'
+                alignContent="flex-start"
+                justifyContent="center"
+                justifyItems="center"
             >
                 <TextField
                     fullWidth
@@ -73,14 +77,17 @@ const TitlePreview = ({ defaultArticleList, setTitlePreviewed }) => {
                     value={searchInput}
                     sx={{
                         margin: 0,
+                        marginBottom: '30px'
                     }}
                     onChange={handleInputChange}
                     onBlur={handleBlur}
                 />
                 <Box sx={{
-                    height: "65vh",
+                    paddingTop: '10px',
+                    height: "71vh",
                     width: "100%",
-                    overflow: 'auto'
+                    overflow: 'auto',
+                    marginTop: 0
                 }}>
                     {searchInput ? (articleList?.map((article) => (
                         <TitlePreviewItem

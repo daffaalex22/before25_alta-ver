@@ -83,10 +83,19 @@ const ArticleDetailsClient = () => {
                     <Typography
                         variant="h3"
                         sx={{
-                            marginBottom: '30px'
+                            marginBottom: '20px'
                         }}
                     >
                         {article?.title}
+                    </Typography>
+                    <Typography
+                        variant="subheader"
+                        sx={{
+                            marginBottom: '30px',
+                            fontStyle: 'italic'
+                        }}
+                    >
+                        Written by {article?.author.name}
                     </Typography>
                     <Typography>
                         {ReactHtmlParser(article?.content)}
