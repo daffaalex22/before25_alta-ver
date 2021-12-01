@@ -16,7 +16,7 @@ export function useAuth() {
 }
 
 const AuthProvider = ({ children }) => {
-    const [currentUser, setCurrentUser] = useState()
+    const [currentUser, setCurrentUser] = useState('')
     const [loading, setLoading] = useState(true)
 
     function login(email, password) {
@@ -32,9 +32,13 @@ const AuthProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        setPersistence(auth, browserLocalPersistence)
+        // setPersistence(auth, browserLocalPersistence)
         onAuthStateChanged(auth, (user) => {
-            setCurrentUser(user)
+            if (user) {
+                setCurrentUser('login')
+            } else {
+                setCurrentUser('logout')
+            }
             setLoading(false)
         })
         console.log('current user', currentUser)

@@ -27,7 +27,7 @@ const HomeAdmin = ({ articleList, categoryList, authorList, editVariables, allLo
 
     return (
         <>
-            <Container className="home-admin">
+            <Container sx={{ marginTop: '100px' }}>
                 <HeaderAdmin />
                 <ArticleList
                     ubahArticle={ubahArticle}

@@ -20,7 +20,8 @@ const breakpointColumns = {
 const classes = {
     articleList: {
         marginTop: 10,
-        textAlign: 'center'
+        textAlign: 'center',
+        marginBottom: '100px'
     },
     searchBar: {
         width: '45%',

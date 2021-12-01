@@ -89,7 +89,12 @@ const ArticlePreview = ({ setOnArticleDetails, setValue, article }) => {
                         sx={{
                             textAlign: 'justify',
                             height: '40vh',
-                            overflow: 'auto'
+                            overflow: 'auto',
+                            transition: 'all 0.3s ease-in-out',
+                            '&:hover': {
+                                boxShadow: 6,
+                                transition: 'all 0.3s ease-in-out'
+                            }
                         }}
                         variant="body2"
                         color="textPrimary"
