@@ -4,46 +4,60 @@ import Box from '@mui/material/Box';
 
 const Sidebar = () => {
     return (
-        <Grid item container
-            xs={12}
-            justifyContent="center"
-            alignItems="center"
-
+        <Grid
+            item
+            xs={1}
+            lg={2}
         >
-            <Box
-                sx={{
-                    position: 'fixed',
-                    top: '40%',
-                }}
+            <Grid
+                container
+                spacing={1}
+                height="80%"
+                direction="column"
+                align="center"
             >
-                <Link
-                    href="#"
-                    sx={{
-                        display: 'block',
-                        margin: '10px 0'
-                    }}
+                <Grid item container
+                    xs={12}
+                    justifyContent="center"
+                    alignItems="center"
+
                 >
-                    01
-                </Link>
-                <Link
-                    href="#"
-                    sx={{
-                        display: 'block',
-                        margin: '10px 0'
-                    }}
-                >
-                    02
-                </Link>
-                <Link
-                    href="#"
-                    sx={{
-                        display: 'block',
-                        margin: '10px 0'
-                    }}
-                >
-                    03
-                </Link>
-            </Box>
+                    <Box
+                        sx={{
+                            position: 'fixed',
+                            top: '40%',
+                        }}
+                    >
+                        <Link
+                            href="#"
+                            sx={{
+                                display: 'block',
+                                margin: '10px 0'
+                            }}
+                        >
+                            01
+                        </Link>
+                        <Link
+                            href="#"
+                            sx={{
+                                display: 'block',
+                                margin: '10px 0'
+                            }}
+                        >
+                            02
+                        </Link>
+                        <Link
+                            href="#"
+                            sx={{
+                                display: 'block',
+                                margin: '10px 0'
+                            }}
+                        >
+                            03
+                        </Link>
+                    </Box>
+                </Grid>
+            </Grid>
         </Grid>
     );
 }

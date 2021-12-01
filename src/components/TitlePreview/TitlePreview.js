@@ -3,169 +3,108 @@ import Box from '@mui/material/Box';
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import Paper from "@mui/material/Paper";
+import { GET_ALL_ARTICLES } from "../../gql/queries";
+import { useQuery, useMutation } from "@apollo/client";
+import { useState, useEffect } from "react";
+import TitlePreviewItem from "../TitlePreviewItem/TitlePreviewItem";
 
-const dummyTitle = "The Looming mental Health Crisis"
-const dummyPreview = "Lorem ipsum dolor, sit amet consectetur adipisicing elit.Iusto dolorum repudiandae explicabo repellendus commodi natus aliquid veniam omnis ipsum! Ut commodi quibusdam aperiam laborum suscipit enim?Nobis deleniti repudiandae at! Quidem ipsam quibusdam quos repellat cum magnam eius laboriosam, ad obcaecati.Distinctio nam ullam quod modi maxime fugit ut, dignissimos maiores sint architecto sunt atque pariatur, error obcaecati cupiditate eius."
+const TitlePreview = ({ defaultArticleList, setTitlePreviewed }) => {
+    const [searchInput, setSearchInput] = useState('')
+    const [articleList, setArticleList] = useState([])
+
+    const [variables, setVariables] = useState({
+        variables: {
+            "title": {
+                "_iregex": ""
+            },
+            "catName": {},
+            "authorName": {}
+        }
+    }
+    );
+
+    const {
+        loading: allLoading,
+        error: allError,
+        data: allData,
+        refetch: refetchAll
+    } = useQuery(GET_ALL_ARTICLES, variables);
+
+    useEffect(() => {
+        if (allData) {
+            setArticleList(allData?.before25_articles);
+        }
+    }, [allData])
+
+    if (allError) return allError.message
+
+    const handleInputChange = (e) => {
+        setVariables({
+            variables: {
+                "title": {
+                    "_iregex": e.target.value
+                },
+                "catName": {},
+                "authorName": {}
+            }
+        })
+        setSearchInput(e.target.value)
+    }
+
+    const handleBlur = (e) => {
+        console.log('BLurred')
+    }
 
 
-
-const TitlePreview = () => {
     return (
-        <Grid
-            item
-            xs={11}
-            lg={5}
-        >
+        <>
             <Grid
+                item
                 container
                 spacing={2}
-                sx={{
-                    height: "80vh",
-                    overflow: 'auto'
-                }}
+                xs={11}
+                lg={5}
+                // alignItems='flex-start'
+                alignContent="flex-start"
+                justifyContent="center"
+                justifyItems="center"
             >
-                <Grid item
-                    xs={12}
+                <TextField
+                    fullWidth
+                    label="Search Article"
+                    variant="filled"
+                    value={searchInput}
                     sx={{
-                        marginBottom: "8%",
-                        marginRight: '10px'
+                        margin: 0,
+                        marginBottom: '30px'
                     }}
-                >
-                    <TextField
-                        fullWidth
-                        label="Search Article"
-                    />
-                </Grid>
-                <Grid item xs={12}>
-                    <Typography
-                        sx={{
-                            textAlign: 'left',
-                            marginBottom: '10px',
-                            marginRight: '10px'
-                        }}
-                        variant="h6"
-                        component="p"
-                        color="textPrimary"
-                        border="1px solid black"
-                        p="15px 20px"
-                    >
-                        {dummyTitle}
-                    </Typography>
-                </Grid>
-                <Grid item xs={12}>
-                    <Typography
-                        sx={{
-                            textAlign: 'left',
-                            marginBottom: '10px',
-                            marginRight: '10px'
-                        }}
-                        variant="h6"
-                        component="p"
-                        color="textPrimary"
-                        border="1px solid black"
-                        p="15px 20px"
-                    >
-                        {dummyTitle}
-                    </Typography>
-                </Grid>
-                <Grid item xs={12}>
-                    <Typography
-                        sx={{
-                            textAlign: 'left',
-                            marginBottom: '10px',
-                            marginRight: '10px'
-                        }}
-                        variant="h6"
-                        component="p"
-                        color="textPrimary"
-                        border="1px solid black"
-                        p="15px 20px"
-                    >
-                        {dummyTitle}
-                    </Typography>
-                </Grid>
-                <Grid item xs={12}>
-                    <Typography
-                        sx={{
-                            textAlign: 'left',
-                            marginBottom: '10px',
-                            marginRight: '10px'
-                        }}
-                        variant="h6"
-                        component="p"
-                        color="textPrimary"
-                        border="1px solid black"
-                        p="15px 20px"
-                    >
-                        {dummyTitle}
-                    </Typography>
-                </Grid>
-                <Grid item xs={12}>
-                    <Typography
-                        sx={{
-                            textAlign: 'left',
-                            marginBottom: '10px',
-                            marginRight: '10px'
-                        }}
-                        variant="h6"
-                        component="p"
-                        color="textPrimary"
-                        border="1px solid black"
-                        p="15px 20px"
-                    >
-                        {dummyTitle}
-                    </Typography>
-                </Grid>
-                <Grid item xs={12}>
-                    <Typography
-                        sx={{
-                            textAlign: 'left',
-                            marginBottom: '10px',
-                            marginRight: '10px'
-                        }}
-                        variant="h6"
-                        component="p"
-                        color="textPrimary"
-                        border="1px solid black"
-                        p="15px 20px"
-                    >
-                        {dummyTitle}
-                    </Typography>
-                </Grid>
-                <Grid item xs={12}>
-                    <Typography
-                        sx={{
-                            textAlign: 'left',
-                            marginBottom: '10px',
-                            marginRight: '10px'
-                        }}
-                        variant="h6"
-                        component="p"
-                        color="textPrimary"
-                        border="1px solid black"
-                        p="15px 20px"
-                    >
-                        {dummyTitle}
-                    </Typography>
-                </Grid>
-                <Grid item xs={12}>
-                    <Typography
-                        sx={{
-                            textAlign: 'left',
-                            marginBottom: '10px',
-                            marginRight: '10px'
-                        }}
-                        variant="h6"
-                        component="p"
-                        color="textPrimary"
-                        border="1px solid black"
-                        p="15px 20px"
-                    >
-                        {dummyTitle}
-                    </Typography>
-                </Grid>
+                    onChange={handleInputChange}
+                    onBlur={handleBlur}
+                />
+                <Box sx={{
+                    paddingTop: '10px',
+                    height: "71vh",
+                    width: "100%",
+                    overflow: 'auto',
+                    marginTop: 0
+                }}>
+                    {searchInput ? (articleList?.map((article) => (
+                        <TitlePreviewItem
+                            article={article}
+                            allLoading={allLoading}
+                            setTitlePreviewed={setTitlePreviewed}
+                        />
+                    ))) : (defaultArticleList?.map((article) => (
+                        <TitlePreviewItem
+                            article={article}
+                            allLoading={allLoading}
+                            setTitlePreviewed={setTitlePreviewed}
+                        />
+                    )))}
+                </Box>
             </Grid>
-        </Grid>
+        </>
     );
 }
 

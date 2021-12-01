@@ -1,6 +1,6 @@
 import './App.css';
 import HomeAdmin from './pages/Admin/HomeAdmin/HomeAdmin';
-import ArticleDetails from './pages/Admin/ArticleDetails';
+import ArticleDetails from './pages/Admin/ArticleDetails/ArticleDetails';
 import NotFound from './pages/NotFound/NotFound';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useQuery, useMutation, gql } from "@apollo/client";
@@ -13,6 +13,12 @@ import Resources from './pages/Client/Resources/Resources';
 import HeaderClient from './pages/Client/HeaderClient/HeaderClient';
 import ArticleDetailsClient from './pages/Client/ArticleDetailsClient/ArticleDetailsClient';
 import Footer from './components/Footer/Footer';
+import { GET_ALL_ARTICLES, GET_ALL_AUTHORS, GET_ALL_CATEGORIES } from './gql/queries'
+import { ADD_ARTICLE, EDIT_ARTICLE, DELETE_ARTICLE_BY_ID } from './gql/mutations'
+import LoginPage from './pages/Admin/LoginPage/LoginPage';
+import AuthProvider from './contexts/AuthContext';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+// import Route from './components/Route/Route'
 
 const theme = createTheme({
   palette: {
@@ -24,76 +30,7 @@ const theme = createTheme({
 })
 
 function App() {
-  const GET_ALL_ARTICLES = gql`query GetArticles($title: String_comparison_exp!, $catName: String_comparison_exp!, $authorName: String_comparison_exp!) {
-    before25_articles(where: {title: $title, category: {name: $catName}, author: {name: $authorName}}) {
-      id
-      title
-      updated_at
-      description
-      created_at
-      category {
-        name
-      }
-      author {
-        name
-      }
-      content
-    }
-  }`
 
-  const GET_ALL_AUTHORS = gql`query getAllAuthors {
-    before25_author {
-      id
-      name
-      nickname
-      email
-      created_at
-      updated_at
-    }
-  }`
-
-  const GET_ALL_CATEGORIES = gql`query getAllCategories {
-    before25_category {
-      id
-      name
-      created_at
-      updated_at
-    }
-  }`
-
-  const EDIT_ARTICLE = gql`mutation MyMutation($author_id: Int!, $category_id: Int!, $content: String!, $description: String!, $title: String!, $_eq: Int!) {
-    update_before25_articles(where: {id: {_eq: $_eq}}, _set: {author_id: $author_id, category_id: $category_id, content: $content, description: $description, title: $title}) {
-      affected_rows
-    }
-  }`
-
-  const ADD_ARTICLE = gql`mutation addArticle($author_id: Int!, $category_id: Int!, $content: String!, $description: String!, $title: String!) {
-    insert_before25_articles_one(object: {author_id: $author_id, category_id: $category_id, content: $content, description: $description, title: $title}) {
-      id
-      author_id
-      category_id
-      content
-      description
-      title
-    }
-  }`
-
-  const DELETE_ARTICLE_BY_ID = gql`mutation deleteArticleById($id: Int!) {
-    delete_before25_articles_by_pk(id: $id) {
-      title
-      id
-      description
-      content
-      category_id
-      author_id
-      category {
-        name
-      }
-      author {
-        name
-      }
-    }
-  }`
 
   const [variables, setVariables] = useState({
     variables: {
@@ -171,24 +108,17 @@ function App() {
   const [categoryList, setCategoryList] = useState([])
   const [authorList, setAuthorList] = useState([])
 
-  // const [isEditing, setIsEditing] = useState(false);
-  // const [editID, setEditID] = useState(0);
+  const [value, setValue] = useState(0);
+
 
   const ubahArticle = variableEdit => {
     editArticle({ variables: variableEdit });
-    // setIsEditing(false)
-    // setEditID(0)
     console.log('article Edited')
   };
 
   const addAnArticle = newArticle => {
     addArticle({ variables: newArticle })
   }
-
-  // const handleEdit = (id) => {
-  //   setIsEditing(true);
-  //   setEditID(id);
-  // }
 
   const handleDelete = (deleteId) => {
     deleteArticleById({ variables: { id: deleteId } })
@@ -224,45 +154,89 @@ function App() {
   if (deleteLoading) return <LoadingPage />
   if (deleteError) return <div>{`${deleteError.message}`}</div>
 
+
+
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
         <BrowserRouter>
-          <Routes>
-            <Route exact path="/" element={
-              <>
-                <HeaderClient />
-                <Footer />
-              </>
-            }>
-            </Route>
-            <Route path="/admin" element={
-              <HomeAdmin
-                ubahArticle={ubahArticle}
-                handleDeleteRoot={handleDelete}
-                allLoading={allLoading}
-                editVariables={editVariables}
-                articleList={articleList}
-                categoryList={categoryList}
-                authorList={authorList}
-              />}></Route>
-            <Route path="/admin/articles/:id" element={
-              <ArticleDetails
-                ubahArticle={ubahArticle}
-                articleList={articleList}
-                categoryList={categoryList}
-                authorList={authorList}
-              />}></Route>
-            <Route path="/admin/add-article" element={
-              <ArticleDetails
-                ubahArticle={ubahArticle}
-                articleList={articleList}
-                categoryList={categoryList}
-                authorList={authorList}
-                addAnArticle={addAnArticle}
-              />}></Route>
-            <Route path="*" element={<NotFound />}></Route>
-          </Routes>
+          <AuthProvider>
+            <Routes>
+              <Route path="/home" element={
+                <>
+                  <HeaderClient value={value} setValue={setValue} />
+                  <Footer />
+                </>
+              }>
+              </Route>
+              <Route exact path="/resources" element={
+                <>
+                  <HeaderClient value={value} setValue={setValue} />
+                  <Footer />
+                </>
+              }>
+              </Route>
+              <Route path="/faq" element={
+                <>
+                  <HeaderClient value={value} setValue={setValue} />
+                  <Footer />
+                </>
+              }>
+              </Route>
+              <Route path="/contribute" element={
+                <>
+                  <HeaderClient value={value} setValue={setValue} />
+                  <Footer />
+                </>
+              }>
+              </Route>
+              <Route exact path="/resources/articles/:id" element={
+                <>
+                  <HeaderClient value={value} setValue={setValue} />
+                  <Footer />
+                </>
+              }>
+              </Route>
+              <Route exact path="/admin" element={
+                <PrivateRoute>
+                  <HomeAdmin
+                    ubahArticle={ubahArticle}
+                    handleDeleteRoot={handleDelete}
+                    allLoading={allLoading}
+                    editVariables={editVariables}
+                    articleList={articleList}
+                    categoryList={categoryList}
+                    authorList={authorList}
+                  />
+                </PrivateRoute>
+              }>
+              </Route>
+              <Route path="/admin/articles/:id" element={
+                <PrivateRoute>
+                  <ArticleDetails
+                    ubahArticle={ubahArticle}
+                    articleList={articleList}
+                    categoryList={categoryList}
+                    authorList={authorList}
+                  />
+                </PrivateRoute>}>
+              </Route>
+              <Route path="/admin/add-article" element={
+                <PrivateRoute>
+                  <ArticleDetails
+                    ubahArticle={ubahArticle}
+                    articleList={articleList}
+                    categoryList={categoryList}
+                    authorList={authorList}
+                    addAnArticle={addAnArticle}
+                  />
+                </PrivateRoute>}>
+              </Route>
+              <Route path="/admin/login" element={
+                <LoginPage />}></Route>
+              <Route path="*" element={<NotFound />}></Route>
+            </Routes>
+          </AuthProvider>
         </BrowserRouter>
       </div>
     </ThemeProvider>

@@ -2,7 +2,13 @@ import Container from "@mui/material/Container";
 import Typography from '@mui/material/Typography'
 import Box from '@mui/system/Box'
 import Grid from "@mui/material/Grid";
-import Footer from "../../../components/Footer/Footer";
+import { GET_ARTICLE_BY_ID } from "../../../gql/queries";
+import { useHistory, useParams } from "react-router";
+import { gql, useQuery } from "@apollo/client";
+import { useState, useEffect } from "react";
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import LoadingPage from "../../../components/LoadingPage/LoadingPage";
+
 
 const dummyTitle = "The Looming mental Health Crisis"
 const dummyPreview = "Lorem ipsum dolor, sit amet consectetur adipisicing elit.Iusto dolorum repudiandae explicabo repellendus commodi natus aliquid veniam omnis ipsum! Ut commodi quibusdam aperiam laborum suscipit enim?Nobis deleniti repudiandae at! Quidem ipsam quibusdam quos repellat cum magnam eius laboriosam, ad obcaecati.Distinctio nam ullam quod modi maxime fugit ut, dignissimos maiores sint architecto sunt atque pariatur, error obcaecati cupiditate eius."
@@ -18,6 +24,36 @@ const dummyContent = <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
     Perferendis iusto, incidunt cumque praesentium laudantium debitis quo esse tempore totam sit, temporibus explicabo nulla qui tenetur. Delectus, autem eos? Voluptas voluptatem quas est eum magnam placeat suscipit odio eligendi!</p>
 
 const ArticleDetailsClient = () => {
+    const { id } = useParams();
+    const [article, setArticle] = useState({})
+    const [variables, setVariables] = useState({
+        variables: {
+            "id": id
+        }
+    })
+
+    useEffect(() => {
+        setVariables({
+            variables: {
+                "id": id
+            }
+        })
+    }, [id])
+
+    const {
+        loading,
+        error,
+        data,
+        refetch
+    } = useQuery(GET_ARTICLE_BY_ID, variables);
+
+    useEffect(() => {
+        setArticle(data?.before25_articles_by_pk)
+    }, [data])
+
+    if (loading) return <LoadingPage />
+    if (error) return <h1>{error.message}</h1>
+    // if (!loading) console.log(article)
     return (
         <Box
             className="resources"
@@ -35,26 +71,34 @@ const ArticleDetailsClient = () => {
                     <Typography
                         sx={{
                             textAlign: 'left',
-                            padding: '10px 10px'
                         }}
                         variant="h6"
                         component="p"
                         color="textPrimary"
                     >
-                        01 / The Looming Mental Health Crisis
+                        01 / {article?.title}
                     </Typography>
                 </Grid>
                 <Grid item xs={12}>
                     <Typography
                         variant="h3"
                         sx={{
-                            marginBottom: '30px'
+                            marginBottom: '20px'
                         }}
                     >
-                        {dummyTitle}
+                        {article?.title}
+                    </Typography>
+                    <Typography
+                        variant="subheader"
+                        sx={{
+                            marginBottom: '30px',
+                            fontStyle: 'italic'
+                        }}
+                    >
+                        Written by {article?.author.name}
                     </Typography>
                     <Typography>
-                        {dummyContent}
+                        {ReactHtmlParser(article?.content)}
                     </Typography>
                 </Grid>
             </Grid>
