@@ -1,6 +1,6 @@
+[70%] Static Pages
 * Context, Global State Management
 * Cleaning Structure
-[50%] Static Pages
 * Image Store -> Firebase
 * Dark Mode
 * Unit Testing

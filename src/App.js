@@ -18,7 +18,7 @@ import { ADD_ARTICLE, EDIT_ARTICLE, DELETE_ARTICLE_BY_ID } from './gql/mutations
 import LoginPage from './pages/Admin/LoginPage/LoginPage';
 import AuthProvider from './contexts/AuthContext';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
-// import Route from './components/Route/Route'
+import { Navigate } from 'react-router';
 
 const theme = createTheme({
   palette: {
@@ -162,6 +162,7 @@ function App() {
         <BrowserRouter>
           <AuthProvider>
             <Routes>
+              <Route exact path="/" element={<Navigate to="/home" />} />
               <Route path="/home" element={
                 <>
                   <HeaderClient value={value} setValue={setValue} />
@@ -239,7 +240,7 @@ function App() {
           </AuthProvider>
         </BrowserRouter>
       </div>
-    </ThemeProvider>
+    </ThemeProvider >
   );
 }
 
