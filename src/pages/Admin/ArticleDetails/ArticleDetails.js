@@ -178,7 +178,7 @@ const ArticleDetails = ({ articleList, categoryList, authorList, ubahArticle, ad
   return (
     <>
       <HeaderAdmin />
-      <Container className="article-content" sx={{ marginTop: 10 }}>
+      <Container className="article-content" sx={{ marginTop: '130px' }}>
         <form noValidate onSubmit={handleSubmit}>
           <TextField
             sx={classes.field}

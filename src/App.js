@@ -15,6 +15,10 @@ import ArticleDetailsClient from './pages/Client/ArticleDetailsClient/ArticleDet
 import Footer from './components/Footer/Footer';
 import { GET_ALL_ARTICLES, GET_ALL_AUTHORS, GET_ALL_CATEGORIES } from './gql/queries'
 import { ADD_ARTICLE, EDIT_ARTICLE, DELETE_ARTICLE_BY_ID } from './gql/mutations'
+import LoginPage from './pages/Admin/LoginPage/LoginPage';
+import AuthProvider from './contexts/AuthContext';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+// import Route from './components/Route/Route'
 
 const theme = createTheme({
   palette: {
@@ -156,69 +160,83 @@ function App() {
     <ThemeProvider theme={theme}>
       <div className="App">
         <BrowserRouter>
-          <Routes>
-            <Route path="/home" element={
-              <>
-                <HeaderClient value={value} setValue={setValue} />
-                <Footer />
-              </>
-            }>
-            </Route>
-            <Route exact path="/resources" element={
-              <>
-                <HeaderClient value={value} setValue={setValue} />
-                <Footer />
-              </>
-            }>
-            </Route>
-            <Route path="/faq" element={
-              <>
-                <HeaderClient value={value} setValue={setValue} />
-                <Footer />
-              </>
-            }>
-            </Route>
-            <Route path="/contribute" element={
-              <>
-                <HeaderClient value={value} setValue={setValue} />
-                <Footer />
-              </>
-            }>
-            </Route>
-            <Route exact path="/resources/articles/:id" element={
-              <>
-                <HeaderClient value={value} setValue={setValue} />
-                <Footer />
-              </>
-            }>
-            </Route>
-            <Route path="/admin" element={
-              <HomeAdmin
-                ubahArticle={ubahArticle}
-                handleDeleteRoot={handleDelete}
-                allLoading={allLoading}
-                editVariables={editVariables}
-                articleList={articleList}
-                categoryList={categoryList}
-                authorList={authorList}
-              />}></Route>
-            <Route path="/admin/articles/:id" element={
-              <ArticleDetails
-                ubahArticle={ubahArticle}
-                articleList={articleList}
-                categoryList={categoryList}
-                authorList={authorList}
-              />}></Route>
-            <Route path="/admin/add-article" element={
-              <ArticleDetails
-                ubahArticle={ubahArticle}
-                articleList={articleList}
-                categoryList={categoryList}
-                authorList={authorList}
-                addAnArticle={addAnArticle}
-              />}></Route>
-            <Route path="*" element={<NotFound />}></Route>
-          </Routes>
+          <AuthProvider>
+            <Routes>
+              <Route path="/home" element={
+                <>
+                  <HeaderClient value={value} setValue={setValue} />
+                  <Footer />
+                </>
+              }>
+              </Route>
+              <Route exact path="/resources" element={
+                <>
+                  <HeaderClient value={value} setValue={setValue} />
+                  <Footer />
+                </>
+              }>
+              </Route>
+              <Route path="/faq" element={
+                <>
+                  <HeaderClient value={value} setValue={setValue} />
+                  <Footer />
+                </>
+              }>
+              </Route>
+              <Route path="/contribute" element={
+                <>
+                  <HeaderClient value={value} setValue={setValue} />
+                  <Footer />
+                </>
+              }>
+              </Route>
+              <Route exact path="/resources/articles/:id" element={
+                <>
+                  <HeaderClient value={value} setValue={setValue} />
+                  <Footer />
+                </>
+              }>
+              </Route>
+              <Route exact path="/admin" element={
+                <PrivateRoute>
+                  <HomeAdmin
+                    ubahArticle={ubahArticle}
+                    handleDeleteRoot={handleDelete}
+                    allLoading={allLoading}
+                    editVariables={editVariables}
+                    articleList={articleList}
+                    categoryList={categoryList}
+                    authorList={authorList}
+                  />
+                </PrivateRoute>
+              }>
+              </Route>
+              <Route path="/admin/articles/:id" element={
+                <PrivateRoute>
+                  <ArticleDetails
+                    ubahArticle={ubahArticle}
+                    articleList={articleList}
+                    categoryList={categoryList}
+                    authorList={authorList}
+                  />
+                </PrivateRoute>}>
+              </Route>
+              <Route path="/admin/add-article" element={
+                <PrivateRoute>
+                  <ArticleDetails
+                    ubahArticle={ubahArticle}
+                    articleList={articleList}
+                    categoryList={categoryList}
+                    authorList={authorList}
+                    addAnArticle={addAnArticle}
+                  />
+                </PrivateRoute>}>
+              </Route>
+              <Route path="/admin/login" element={
+                <LoginPage />}></Route>
+              <Route path="*" element={<NotFound />}></Route>
+            </Routes>
+          </AuthProvider>
         </BrowserRouter>
       </div>
     </ThemeProvider>
