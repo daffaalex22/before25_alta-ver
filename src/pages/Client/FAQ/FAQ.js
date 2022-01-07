@@ -4,6 +4,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Box from '@mui/system/Box';
+import { Link } from '@mui/material';
 
 const classes = {
     pageTitle: {
@@ -50,17 +51,12 @@ const FAQ = () => {
                     aria-controls="panel1a-content"
                 >
                     <Typography variant="h5" sx={classes.accordionSummary}>
-                        Lorem ipsum dolor sit amet?
+                        What is Before25?
                     </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography sx={classes.accordionDetails}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer finibus gravida sapien,
-                        fringilla cursus odio posuere non. Cras efficitur pretium eros, sed consequat est semper vitae.
-                        Suspendisse condimentum ultrices egestas. Pellentesque posuere venenatis posuere. Ut interdum imperdiet ex,
-                        vitae malesuada nibh interdum ut. Nullam tortor quam, blandit eget vehicula ac, bibendum ac lorem. In hac
-                        habitasse platea dictumst. Morbi turpis nulla, dignissim sed eleifend eget, gravida tincidunt elit. In hac
-                        habitasse platea dictumst. Quisque eleifend tellus condimentum, porttitor est sit amet, efficitur libero.
+                        You can find it <Link>here</Link>.
                     </Typography>
                 </AccordionDetails>
             </Accordion>
@@ -70,17 +66,12 @@ const FAQ = () => {
                     aria-controls="panel1a-content"
                 >
                     <Typography variant="h5" sx={classes.accordionSummary}>
-                        Lorem ipsum dolor sit amet?
+                        How can I reach out to your community?
                     </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography sx={classes.accordionDetails}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer finibus gravida sapien,
-                        fringilla cursus odio posuere non. Cras efficitur pretium eros, sed consequat est semper vitae.
-                        Suspendisse condimentum ultrices egestas. Pellentesque posuere venenatis posuere. Ut interdum imperdiet ex,
-                        vitae malesuada nibh interdum ut. Nullam tortor quam, blandit eget vehicula ac, bibendum ac lorem. In hac
-                        habitasse platea dictumst. Morbi turpis nulla, dignissim sed eleifend eget, gravida tincidunt elit. In hac
-                        habitasse platea dictumst. Quisque eleifend tellus condimentum, porttitor est sit amet, efficitur libero.
+                        We have several social media and here is the info page directing you to the one that you like!
                     </Typography>
                 </AccordionDetails>
             </Accordion>
@@ -91,17 +82,12 @@ const FAQ = () => {
                     id="panel2a-header"
                 >
                     <Typography variant="h5" sx={classes.accordionSummary}>
-                        Lorem ipsum dolor sit amet?
+                        How can I get involved in the community?
                     </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography sx={classes.accordionDetails}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer finibus gravida sapien,
-                        fringilla cursus odio posuere non. Cras efficitur pretium eros, sed consequat est semper vitae.
-                        Suspendisse condimentum ultrices egestas. Pellentesque posuere venenatis posuere. Ut interdum imperdiet ex,
-                        vitae malesuada nibh interdum ut. Nullam tortor quam, blandit eget vehicula ac, bibendum ac lorem. In hac
-                        habitasse platea dictumst. Morbi turpis nulla, dignissim sed eleifend eget, gravida tincidunt elit. In hac
-                        habitasse platea dictumst. Quisque eleifend tellus condimentum, porttitor est sit amet, efficitur libero.
+                        There are several divisions for you to choose from; event, partnership, social media, graphic design, video design, and multimedia. Once we open our recruitment, you’ll get to check out the requirements for each division. Follow our social media so you won’t miss the news!
                     </Typography>
                 </AccordionDetails>
             </Accordion>
@@ -112,17 +98,12 @@ const FAQ = () => {
                     id="panel2a-header"
                 >
                     <Typography variant="h5" sx={classes.accordionSummary}>
-                        Lorem ipsum dolor sit amet?
+                        How can I join the team?
                     </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography sx={classes.accordionDetails}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer finibus gravida sapien,
-                        fringilla cursus odio posuere non. Cras efficitur pretium eros, sed consequat est semper vitae.
-                        Suspendisse condimentum ultrices egestas. Pellentesque posuere venenatis posuere. Ut interdum imperdiet ex,
-                        vitae malesuada nibh interdum ut. Nullam tortor quam, blandit eget vehicula ac, bibendum ac lorem. In hac
-                        habitasse platea dictumst. Morbi turpis nulla, dignissim sed eleifend eget, gravida tincidunt elit. In hac
-                        habitasse platea dictumst. Quisque eleifend tellus condimentum, porttitor est sit amet, efficitur libero.
+                        Our volunteer recruitment is currently closed. You can get more info on our instagram page when it is open.
                     </Typography>
                 </AccordionDetails>
             </Accordion>
@@ -133,17 +114,55 @@ const FAQ = () => {
                     id="panel2a-header"
                 >
                     <Typography variant="h5" sx={classes.accordionSummary}>
-                        Lorem ipsum dolor sit amet?
+                        How long does the volunteer program go?
                     </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography sx={classes.accordionDetails}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer finibus gravida sapien,
-                        fringilla cursus odio posuere non. Cras efficitur pretium eros, sed consequat est semper vitae.
-                        Suspendisse condimentum ultrices egestas. Pellentesque posuere venenatis posuere. Ut interdum imperdiet ex,
-                        vitae malesuada nibh interdum ut. Nullam tortor quam, blandit eget vehicula ac, bibendum ac lorem. In hac
-                        habitasse platea dictumst. Morbi turpis nulla, dignissim sed eleifend eget, gravida tincidunt elit. In hac
-                        habitasse platea dictumst. Quisque eleifend tellus condimentum, porttitor est sit amet, efficitur libero.
+                        It is usually going for around 8 - 9 months, can be longer or shorter, depending on what our team needs.
+                    </Typography>
+                </AccordionDetails>
+            </Accordion>
+            <Accordion sx={classes.accordion}>
+                <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel2a-content"
+                    id="panel2a-header"
+                >
+                    <Typography variant="h5" sx={classes.accordionSummary}>
+                        Are there any requirements?
+                    </Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <Typography
+                        sx={{ ...classes.accordionDetails }}
+                        variant="div"
+                    >
+                        <ul>
+                            <li>You have to be under 25 years old</li>
+                            <li>You have the passion to serve in this community</li>
+                            <li>You are eager to learn something new</li>
+                            <li>You want to bring a new perspective and be the light for the younger generation</li>
+                            <li>You are flexible in terms of availability</li>
+                            <li>You have a CV and a motivation letter</li>
+                            <li>Last but not least, you are qualified to all the requirements in the division that you chose</li>
+                        </ul>
+                    </Typography>
+                </AccordionDetails>
+            </Accordion>
+            <Accordion sx={classes.accordion}>
+                <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel2a-content"
+                    id="panel2a-header"
+                >
+                    <Typography variant="h5" sx={classes.accordionSummary}>
+                        How can I contribute to this community?
+                    </Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <Typography sx={classes.accordionDetails}>
+                        We have several divisions for you to choose, such as event, partnership, social media, graphic design, video design, and multimedia. Once we open our recruitment, you’ll get to check out the requirements for each division.
                     </Typography>
                 </AccordionDetails>
             </Accordion>

@@ -9,11 +9,12 @@ const Welcome = () => {
     return (
         <Container
             sx={{
-                marginTop: '10vh',
+                marginTop: '90px',
                 height: '90vh',
                 textAlign: 'center'
             }}
             id="welcome"
+            maxWidth="xl"
         >
             <Grid
                 container
