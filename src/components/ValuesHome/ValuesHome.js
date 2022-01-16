@@ -3,6 +3,12 @@ import Typography from '@mui/material/Typography';
 import Box from "@mui/system/Box";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
+import SwiperCore, { Navigation, Pagination, FreeMode } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react/swiper-react.js';
+import 'swiper/swiper-bundle.css'
+import './ValuesHome.css'
+
+SwiperCore.use([Navigation, Pagination, FreeMode])
 
 const ValuesHome = () => {
     return (
@@ -13,20 +19,42 @@ const ValuesHome = () => {
             }}
             id="values"
         >
-            <Grid
-                container
-                spacing={3}
+            <Swiper
+                slidesPerView={3}
+                spaceBetween={30}
+                freeMode={true}
+                pagination={{
+                    "clickable": true
+                }}
+                navigation={true}
+                className="mySwiper"
             >
-                <Grid
-                    item
-                    xs={11}
-                    container
-                    spacing={3}
-                >
-                    Values
-                </Grid>
-            </Grid>
-        </Container>
+                <SwiperSlide>
+                    <Paper
+                        sx={{
+                            width: '100%',
+                            height: '100%',
+                            borderRadius: 0,
+                        }}
+                        elevation={0}
+                    >
+                        <Typography
+                            variant="h4"
+                            fontSize="30px"
+                            sx={{
+                                textDecoration: 'underline'
+                            }}
+                        >
+                            Growth mindset
+                        </Typography>
+                    </Paper>
+                </SwiperSlide>
+                <SwiperSlide>Slide 2</SwiperSlide>
+                <SwiperSlide>Slide 3</SwiperSlide>
+                <SwiperSlide>Slide 4</SwiperSlide>
+                <SwiperSlide>Slide 5</SwiperSlide>
+            </Swiper>
+        </Container >
 
     );
 }
