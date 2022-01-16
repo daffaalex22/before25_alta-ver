@@ -9,73 +9,48 @@ const OurStory = () => {
         <Container
             id="our-story"
             sx={{
-                marginTop: '10vh',
+                marginTop: '200px',
                 height: '90vh',
                 textAlign: 'left',
                 padding: 0
             }}
+            maxWidth="xl"
         >
             <Grid
                 container
-            // spacing={1}
             >
                 <Grid item xs={5}>
                     <Typography
                         variant="h1"
                         component="h2"
                         sx={{
-                            fontWeight: 500,
                             transform: 'rotate(-6.51deg)',
-                            fontSize: '5vmax'
                         }}
-
+                        fontWeight="bold"
+                        fontSize="85px"
                     >
                         Our Story
                     </Typography>
                     <Typography
                         sx={{
-                            position: 'absolute',
-                            top: '130vh',
-                            width: '40vw',
-                            textAlign: 'justify'
-                        }}
-                        color="inherit"
-                    >
-                        Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit, sed do eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua.
-                        Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit
-                        in voluptate velit esse cillum dolore eu fugiat
-                        nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit
-                        anim id est laborum.
-                    </Typography>
-                    <Typography
-                        sx={{
-                            position: 'absolute',
-                            top: '150vh',
+                            position: 'relative',
+                            top: '150px',
                             width: '40vw',
                             textAlign: 'justify',
-                            padding: '10px 15px 10px 0',
+                            padding: '30px 45px 30px 45px',
                             '&:hover': {
                                 backgroundColor: 'white',
-                                transition: 'all 0.3s ease'
+                                transition: 'all 0.5s ease-in-out',
+                                border: '2px solid black'
                             }
                         }}
                         color="inherit"
+                        variant="h4"
+                        fontWeight="light"
                     >
-                        Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit, sed do eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua.
-                        Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit
-                        in voluptate velit esse cillum dolore eu fugiat
-                        nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit
-                        anim id est laborum.
+                        B25 is a youth-led initiative that aims to empower
+                        and equip the next generation with new perspectives
+                        and life values for them to live their best lives.
                     </Typography>
                 </Grid>
                 <Grid item xs={6}>
@@ -86,7 +61,6 @@ const OurStory = () => {
                         }}
                     />
                 </Grid>
-
             </Grid>
         </Container>
     );

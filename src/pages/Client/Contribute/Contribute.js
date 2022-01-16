@@ -36,12 +36,14 @@ const Contribute = () => {
             </Typography>
             <Paper sx={classes.squareBox} elevation={2}>
                 <Typography sx={classes.squareBoxText}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer finibus gravida sapien,
-                    fringilla cursus odio posuere non. Cras efficitur pretium eros, sed consequat est semper vitae.
-                    Suspendisse condimentum ultrices egestas. Pellentesque posuere venenatis posuere. Ut interdum imperdiet ex,
-                    vitae malesuada nibh interdum ut. Nullam tortor quam, blandit eget vehicula ac, bibendum ac lorem. In hac
-                    habitasse platea dictumst. Morbi turpis nulla, dignissim sed eleifend eget, gravida tincidunt elit. In hac
-                    habitasse platea dictumst. Quisque eleifend tellus condimentum, porttitor est sit amet, efficitur libero.
+                    Of course, our community is open for everyone's
+                    contribution outside our volunteers. You can
+                    contribute in many ways, and you may find the
+                    information here (prepare a link maybe so they
+                    can refer to it straight away?). We are very happy
+                    for our contributors during these two years.
+                    Without you, we won't be able to keep going and provide
+                    all these programmes for youngsters.
                 </Typography>
             </Paper>
             <Typography sx={classes.pageTitle}>
