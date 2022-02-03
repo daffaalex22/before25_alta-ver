@@ -7,6 +7,11 @@ import LinkedIn from '@mui/icons-material/LinkedIn';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography'
 import Link from '@mui/material/Link'
+import logoFooter from '../../assets/images/LOGO_Footer.png'
+import IconButton from '@mui/material/IconButton'
+import useMediaQuery from '@mui/material/useMediaQuery';
+import useWindowDimensions from '../../customHooks/useWindowDimension';
+import { useEffect } from 'react';
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -15,12 +20,27 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary
 }));
 
+const breakpoints = {
+    xs: "0px",
+    sm: "600px",
+    md: "900px",
+    lg: "1200px",
+    xl: "1536px"
+}
+
 const Footer = () => {
+    const { height, width } = useWindowDimensions();
+
+    useEffect(() => {
+        console.log("width: ", width)
+    }, [width]);
+
+
     return (
         <Box
             sx={{
-                height: '29vh',
-                backgroundColor: '#C4C4C4',
+                minHeight: '29vh',
+                backgroundColor: '#382E0B',
                 margin: '25px 0 0 0'
             }}
         >
@@ -31,63 +51,104 @@ const Footer = () => {
                     p={1}
                     sx={{ height: '100%' }}
                 >
-                    <Grid item xs={3}>
-                        <Item sx={{ textAlign: 'center' }}>Logo</Item>
+                    <Grid
+                        item
+                        xs={12}
+                        md={3}
+                        container
+                        justifyContent="center"
+                    >
+                        <img src={logoFooter} alt="Logo Before 25" style={{ height: '80%' }} />
                     </Grid>
                     <Grid
                         item
                         container
                         xs={4}
+                        md={4}
                         spacing={5}
                         p={1}
                         sx={{ height: '100%' }}
+                        justifyContent="start"
                     >
-                        <Grid item xs={12}>
-                            <Link
-                                color="textPrimary"
-                                variant="body2"
-                                textAlign="left"
-                                lineHeight="40px"
-                                display="block"
+                        <Grid item xs={12} container justifyContent="center">
+                            <Grid
+                                item
+                                xs={7}
+                                container
+                                justifyContent="start"
                             >
-                                Resources
-                            </Link>
-                            <Link
-                                color="textPrimary"
-                                variant="body2"
-                                textAlign="left"
-                                lineHeight="40px"
-                                display="block"
+                                <Link
+                                    variant="body2"
+                                    textAlign="left"
+                                    lineHeight="40px"
+                                    display="block"
+                                    sx={{ color: '#F8F5E2' }}
+                                    target="_blank"
+                                    href="https://www.google.com"
+                                >
+                                    Resources
+                                </Link>
+                            </Grid>
+                            <Grid
+                                item
+                                xs={7}
+                                container
+                                justifyContent="start"
                             >
-                                FAQ
-                            </Link>
-                            <Link
-                                color="textPrimary"
-                                variant="body2"
-                                textAlign="left"
-                                lineHeight="40px"
-                                display="block"
+                                <Link
+                                    variant="body2"
+                                    textAlign="left"
+                                    lineHeight="40px"
+                                    display="block"
+                                    sx={{ color: '#F8F5E2' }}
+                                    target="_blank"
+                                    href="https://www.google.com"
+                                >
+                                    FAQ
+                                </Link>
+                            </Grid>
+                            <Grid
+                                item
+                                xs={7}
+                                container
+                                justifyContent="start"
                             >
-                                Contribute
-                            </Link>
+                                <Link
+                                    variant="body2"
+                                    textAlign="left"
+                                    lineHeight="40px"
+                                    display="block"
+                                    sx={{ color: '#F8F5E2' }}
+                                    target="_blank"
+                                    href="https://www.google.com"
+                                >
+                                    Contribute
+                                </Link>
+                            </Grid>
                         </Grid>
                     </Grid>
                     <Grid
                         item
                         container
-                        xs={5}
+                        xs={7}
+                        md={5}
                         spacing={3}
                         p={1}
                         sx={{ height: '100%' }}
+                        justifyContent="center"
                     >
-                        <Grid item xs={12}>
+                        <Grid item xs={7}>
                             <Box textAlign="right">
-                                <Instagram sx={{ margin: "0 7px", color: 'black', fontSize: '35px' }} />
-                                <LinkedIn sx={{ margin: "0 7px", color: 'black', fontSize: '35px' }} />
+                                <IconButton target="_blank" href="https://www.instagram.com/beforeyouturn.25/">
+                                    <Instagram sx={{ margin: "0 2px", fontSize: '35px', color: '#F8F5E2' }} />
+                                </IconButton>
+                                <IconButton target="_blank" href="https://www.linkedin.com/company/before-25/">
+                                    <LinkedIn sx={{ margin: "0 0px", fontSize: '35px', color: '#F8F5E2' }} />
+                                </IconButton>
                             </Box>
                         </Grid>
-                        <Grid item xs={12}>
-                            <Typography color="textSecondary" variant="body2" textAlign="right">
+                        <Grid item xs={7}>
+                            <Typography sx={{ color: '#F8F5E2', marginBottom: '30px' }} variant="body2" textAlign="right">
                                 Copyright Before 25 ID. Designed by Before 25 ID.
                             </Typography>
                         </Grid>

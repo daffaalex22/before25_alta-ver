@@ -5,7 +5,7 @@ import NotFound from './pages/NotFound/NotFound';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useQuery, useMutation, gql } from "@apollo/client";
 import { useState, useEffect } from "react";
-import { createTheme, ThemeProvider } from '@mui/material'
+import { createTheme, ThemeProvider, responsiveFontSizes } from '@mui/material'
 import { blue } from '@mui/material/colors';
 import LoadingPage from './components/LoadingPage/LoadingPage';
 import LoadingSkeleton from './components/LoadingSkeleton/LoadingSkeleton';
@@ -20,14 +20,20 @@ import AuthProvider from './contexts/AuthContext';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import { Navigate } from 'react-router';
 
-const theme = createTheme({
+let theme = createTheme({
   palette: {
     primary: {
       main: '#121212'
     },
-    secondary: blue
-  }
+    secondary: blue,
+    text: {
+      primary: '#000000',
+      // secondary: '#F8F5E2',
+    },
+  },
+
 })
+theme = responsiveFontSizes(theme);
 
 function App() {
 

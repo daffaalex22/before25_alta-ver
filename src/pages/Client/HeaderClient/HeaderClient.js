@@ -16,6 +16,9 @@ import { useNavigate } from 'react-router';
 import { Link } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
+import Grid from '@mui/material/Grid';
+import logoHitam from '../../../assets/images/LOGO_1_Resized.png'
+import logoFooter from '../../../assets/images/LOGO_Footer.png'
 
 const dimension = {
     navHeight: '10vh'
@@ -144,28 +147,35 @@ const HeaderClient = ({ value, setValue }) => {
                         sx={classes.tabs}
                     >
                         <Tab
-                            label="Home"
+                            label={
+                                <>
+                                    <img src={logoHitam} alt="Logo B25" style={{ width: '85px', height: 'auto', paddingBottom: '10px' }} />
+                                </>
+                            }
                             {...a11yProps(0)}
                             sx={classes.tab}
-                            onClick={handleClickTab}
                         />
+
+
                         <Tab
                             label="Resources"
                             {...a11yProps(1)}
                             sx={classes.tab}
-                            onClick={handleClickTab}
+
                         />
+
                         <Tab
                             label="FAQ"
                             {...a11yProps(2)}
                             sx={classes.tab}
-                            onClick={handleClickTab}
+
                         />
+
                         <Tab
                             label="Contribute"
                             {...a11yProps(3)}
                             sx={classes.tab}
-                            onClick={handleClickTab}
+
                         />
                         {onArticleDetails && (
                             <Tab
@@ -174,10 +184,20 @@ const HeaderClient = ({ value, setValue }) => {
                                 sx={classes.tab}
                             />
                         )}
-                        <Box sx={classes.iconContainer} justifySelf="end">
-                            <Instagram sx={classes.icon} />
-                            <LinkedIn sx={classes.icon} />
-                        </Box>
+                        {/* <Grid
+                            container
+                            spacing={0}
+                        >
+                            <Grid
+                                item
+                                xs={12}
+                            >
+                                <Box sx={classes.iconContainer} justifySelf="end">
+                                    <Instagram sx={classes.icon} />
+                                    <LinkedIn sx={classes.icon} />
+                                </Box>
+                            </Grid>
+                        </Grid> */}
                     </Tabs>
                 </Box>
                 <TabPanel value={value} index={0}>
