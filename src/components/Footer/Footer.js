@@ -135,7 +135,7 @@ const Footer = () => {
                         spacing={3}
                         p={1}
                         sx={{ height: '100%' }}
-                        justifyContent="center"
+                        justifyContent="end"
                     >
                         <Grid item xs={7}>
                             <Box textAlign="right">

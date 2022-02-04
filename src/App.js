@@ -19,6 +19,10 @@ import LoginPage from './pages/Admin/LoginPage/LoginPage';
 import AuthProvider from './contexts/AuthContext';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import { Navigate } from 'react-router';
+import Box from '@mui/material/Box';
+import bgFaq from './assets/images/bg_faq.png'
+import bgContrib from './assets/images/BG_CONTRIB.png'
+import { useLocation } from "react-router-dom";
 
 let theme = createTheme({
   palette: {
@@ -27,7 +31,7 @@ let theme = createTheme({
     },
     secondary: blue,
     text: {
-      primary: '#000000',
+      primary: '#382E0B',
       // secondary: '#F8F5E2',
     },
   },
@@ -142,6 +146,12 @@ function App() {
     }
   }, [allData, categoryData, authorData])
 
+  const [background, setBackground] = useState(bgFaq);
+
+  const changeBackground = (value) => {
+    setBackground(value)
+  }
+
   if (authorLoading) return <LoadingPage />
   if (authorError) return <div>{`${authorError.message}`}</div>
 
@@ -161,91 +171,96 @@ function App() {
   if (deleteError) return <div>{`${deleteError.message}`}</div>
 
 
-
   return (
     <ThemeProvider theme={theme}>
-      <div className="App">
-        <BrowserRouter>
-          <AuthProvider>
-            <Routes>
-              <Route exact path="/" element={<Navigate to="/home" />} />
-              <Route path="/home" element={
-                <>
-                  <HeaderClient value={value} setValue={setValue} />
+
+      <BrowserRouter>
+        <AuthProvider>
+          <Routes>
+            <Route exact path="/" element={<Navigate to="/home" />} />
+            <Route path="/home" element={
+              <>
+                <HeaderClient value={value} setValue={setValue} changeBackground={changeBackground} />
+                <Footer />
+              </>
+            }>
+            </Route>
+            <Route exact path="/resources" element={
+              <>
+                <HeaderClient value={value} setValue={setValue} changeBackground={changeBackground} />
+                <Footer />
+              </>
+            }>
+            </Route>
+            <Route path="/faq" element={
+              <>
+                <Box
+                  sx={{
+                    backgroundImage: `url(${bgFaq})`,
+                    backgroundPosition: '70% 50%',
+                  }}
+                >
+                  <HeaderClient value={value} setValue={setValue} changeBackground={changeBackground} />
                   <Footer />
-                </>
-              }>
-              </Route>
-              <Route exact path="/resources" element={
-                <>
-                  <HeaderClient value={value} setValue={setValue} />
-                  <Footer />
-                </>
-              }>
-              </Route>
-              <Route path="/faq" element={
-                <>
-                  <HeaderClient value={value} setValue={setValue} />
-                  <Footer />
-                </>
-              }>
-              </Route>
-              <Route path="/contribute" element={
-                <>
-                  <HeaderClient value={value} setValue={setValue} />
-                  <Footer />
-                </>
-              }>
-              </Route>
-              <Route exact path="/resources/articles/:id" element={
-                <>
-                  <HeaderClient value={value} setValue={setValue} />
-                  <Footer />
-                </>
-              }>
-              </Route>
-              <Route exact path="/admin" element={
-                <PrivateRoute>
-                  <HomeAdmin
-                    ubahArticle={ubahArticle}
-                    handleDeleteRoot={handleDelete}
-                    allLoading={allLoading}
-                    editVariables={editVariables}
-                    articleList={articleList}
-                    categoryList={categoryList}
-                    authorList={authorList}
-                  />
-                </PrivateRoute>
-              }>
-              </Route>
-              <Route path="/admin/articles/:id" element={
-                <PrivateRoute>
-                  <ArticleDetails
-                    ubahArticle={ubahArticle}
-                    articleList={articleList}
-                    categoryList={categoryList}
-                    authorList={authorList}
-                  />
-                </PrivateRoute>}>
-              </Route>
-              <Route path="/admin/add-article" element={
-                <PrivateRoute>
-                  <ArticleDetails
-                    ubahArticle={ubahArticle}
-                    articleList={articleList}
-                    categoryList={categoryList}
-                    authorList={authorList}
-                    addAnArticle={addAnArticle}
-                  />
-                </PrivateRoute>}>
-              </Route>
-              <Route path="/admin/login" element={
-                <LoginPage />}></Route>
-              <Route path="*" element={<NotFound />}></Route>
-            </Routes>
-          </AuthProvider>
-        </BrowserRouter>
-      </div>
+                </Box>
+              </>
+            }>
+            </Route>
+            <Route path="/contribute" element={
+              <>
+                <HeaderClient value={value} setValue={setValue} changeBackground={changeBackground} />
+                <Footer />
+              </>
+            }>
+            </Route>
+            <Route exact path="/resources/articles/:id" element={
+              <>
+                <HeaderClient value={value} setValue={setValue} changeBackground={changeBackground} />
+                <Footer />
+              </>
+            }>
+            </Route>
+            <Route exact path="/admin" element={
+              <PrivateRoute>
+                <HomeAdmin
+                  ubahArticle={ubahArticle}
+                  handleDeleteRoot={handleDelete}
+                  allLoading={allLoading}
+                  editVariables={editVariables}
+                  articleList={articleList}
+                  categoryList={categoryList}
+                  authorList={authorList}
+                />
+              </PrivateRoute>
+            }>
+            </Route>
+            <Route path="/admin/articles/:id" element={
+              <PrivateRoute>
+                <ArticleDetails
+                  ubahArticle={ubahArticle}
+                  articleList={articleList}
+                  categoryList={categoryList}
+                  authorList={authorList}
+                />
+              </PrivateRoute>}>
+            </Route>
+            <Route path="/admin/add-article" element={
+              <PrivateRoute>
+                <ArticleDetails
+                  ubahArticle={ubahArticle}
+                  articleList={articleList}
+                  categoryList={categoryList}
+                  authorList={authorList}
+                  addAnArticle={addAnArticle}
+                />
+              </PrivateRoute>}>
+            </Route>
+            <Route path="/admin/login" element={
+              <LoginPage />}></Route>
+            <Route path="*" element={<NotFound />}></Route>
+          </Routes>
+        </AuthProvider>
+      </BrowserRouter>
     </ThemeProvider >
   );
 }
