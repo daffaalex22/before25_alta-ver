@@ -1,18 +1,25 @@
 import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Box from '@mui/system/Box';
 import { Link } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import { styled } from '@mui/material/styles';
+import MuiAccordionSummary from '@mui/material/AccordionSummary';
+import './FAQ.css';
+import bgFaq from '../../../assets/images/bg_faq.png'
 
 const classes = {
     pageTitle: {
         fontSize: '88px',
         textAlign: 'center',
         fontStyle: 'italic',
+        textDecoration: 'underline',
+        textDecorationThickness: '3px',
+        textUnderlineOffset: '8px',
         lineHeight: '96px',
-        marginBottom: '50px'
+        marginBottom: '50px',
+        color: '#F8F5E2',
     },
     accordion: {
         marginBottom: '20px',
@@ -24,7 +31,8 @@ const classes = {
         },
         '&:last-child': {
             borderRadius: 0
-        }
+        },
+        backgroundColor: 'transparent'
     },
     accordionDetails: {
         textAlign: 'justify'
@@ -36,18 +44,32 @@ const classes = {
     }
 }
 
+const AccordionSummary = styled((props) => (
+    <MuiAccordionSummary
+        expandIcon={<AddIcon />}
+        {...props}
+    />
+))(({ theme }) => ({
+    '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
+        transform: 'rotate(-45deg)',
+    },
+    '& .MuiAccordionSummary-expandIconWrapper': {
+        color: 'black'
+    }
+}));
+
 const FAQ = () => {
     return (
         <Box sx={{
             marginTop: '17vh',
-            marginBottom: '10vh'
+            marginBottom: '10vh',
         }}>
-            <Typography sx={classes.pageTitle}>
+            <Typography sx={classes.pageTitle} id="faq-title">
                 Frequently Asked Questions
             </Typography>
             <Accordion sx={classes.accordion} >
                 <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
+                    expandIcon={<AddIcon />}
                     aria-controls="panel1a-content"
                 >
                     <Typography variant="h5" sx={classes.accordionSummary}>
@@ -62,7 +84,7 @@ const FAQ = () => {
             </Accordion>
             <Accordion sx={classes.accordion}>
                 <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
+                    expandIcon={<AddIcon />}
                     aria-controls="panel1a-content"
                 >
                     <Typography variant="h5" sx={classes.accordionSummary}>
@@ -77,7 +99,7 @@ const FAQ = () => {
             </Accordion>
             <Accordion sx={classes.accordion}>
                 <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
+                    expandIcon={<AddIcon />}
                     aria-controls="panel2a-content"
                     id="panel2a-header"
                 >
@@ -93,7 +115,7 @@ const FAQ = () => {
             </Accordion>
             <Accordion sx={classes.accordion}>
                 <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
+                    expandIcon={<AddIcon />}
                     aria-controls="panel2a-content"
                     id="panel2a-header"
                 >
@@ -109,7 +131,7 @@ const FAQ = () => {
             </Accordion>
             <Accordion sx={classes.accordion}>
                 <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
+                    expandIcon={<AddIcon />}
                     aria-controls="panel2a-content"
                     id="panel2a-header"
                 >
@@ -125,7 +147,7 @@ const FAQ = () => {
             </Accordion>
             <Accordion sx={classes.accordion}>
                 <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
+                    expandIcon={<AddIcon />}
                     aria-controls="panel2a-content"
                     id="panel2a-header"
                 >
@@ -152,7 +174,7 @@ const FAQ = () => {
             </Accordion>
             <Accordion sx={classes.accordion}>
                 <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
+                    expandIcon={<AddIcon />}
                     aria-controls="panel2a-content"
                     id="panel2a-header"
                 >

@@ -17,6 +17,7 @@ body {
   font-family: garmond;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #F8F5E2;
 }
 
 code {

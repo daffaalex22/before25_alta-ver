@@ -19,6 +19,8 @@ import { useEffect } from 'react';
 import Grid from '@mui/material/Grid';
 import logoHitam from '../../../assets/images/LOGO_1_Resized.png'
 import logoFooter from '../../../assets/images/LOGO_Footer.png'
+import bgContrib from '../../../assets/images/BG_CONTRIB.png'
+import bgFaq from '../../../assets/images/bg_faq.png'
 
 const dimension = {
     navHeight: '10vh'
@@ -31,15 +33,17 @@ const classes = {
         justifyContent: 'flex-start',
         alignItems: 'flex-end',
         position: 'fixed',
-        backgroundColor: '#ffffff',
+        backgroundColor: '#F8F5E2',
         width: '100%',
+        left: '0',
+        paddingLeft: '10%',
         zIndex: 1000
     },
     tab: {
         textTransform: 'none',
         fontSize: '18px',
         padding: '0 35px',
-        backgroundColor: '#ffffff'
+        backgroundColor: '#F8F5E2',
     },
     icon: {
         margin: '0 2%',
@@ -88,7 +92,7 @@ function a11yProps(index) {
     };
 }
 
-const HeaderClient = ({ value, setValue }) => {
+const HeaderClient = ({ value, setValue, changeBackground }) => {
     const [onArticleDetails, setOnArticleDetails] = useState(false)
     const navigate = useNavigate();
     const location = useLocation();
@@ -96,6 +100,7 @@ const HeaderClient = ({ value, setValue }) => {
     const handleChange = (event, newValue) => {
         navigate(valueToPathname[newValue])
         setValue(newValue)
+        setOnArticleDetails(false)
     };
 
     useEffect(() => {
@@ -108,6 +113,7 @@ const HeaderClient = ({ value, setValue }) => {
 
         console.log(location.pathname)
     }, [])
+
 
     const pathnameToValue = {
         '/home': 0,
@@ -130,7 +136,7 @@ const HeaderClient = ({ value, setValue }) => {
     }
 
     return (
-        <Container>
+        <Container >
             <Box sx={{ width: '100%', padding: 0 }}>
                 <Box
                     sx={{
@@ -138,7 +144,7 @@ const HeaderClient = ({ value, setValue }) => {
                         borderColor: 'divider',
                         height: '500',
                         width: '100%',
-                        padding: 0
+                        padding: 0,
                     }}>
                     <Tabs
                         value={value}
@@ -155,8 +161,6 @@ const HeaderClient = ({ value, setValue }) => {
                             {...a11yProps(0)}
                             sx={classes.tab}
                         />
-
-
                         <Tab
                             label="Resources"
                             {...a11yProps(1)}
