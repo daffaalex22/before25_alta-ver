@@ -2,12 +2,20 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Skeleton from "@mui/material/Skeleton";
-import Button from '@mui/material/Button'
+import Button from '@mui/material/Button';
+import { useLocation, useNavigate } from "react-router";
+import { useState, useEffect } from "react";
 
 const TitlePreviewItem = ({ article, allLoading, setTitlePreviewed }) => {
+    const location = useLocation();
+    const navigate = useNavigate();
 
     const handleClick = () => {
-        setTitlePreviewed(article.title)
+        if (location.pathname.includes("/resources/articles/")) {
+            navigate(`/resources/articles/${article.id}`)
+        } else {
+            setTitlePreviewed(article.title)
+        }
     }
 
     return (
@@ -22,7 +30,7 @@ const TitlePreviewItem = ({ article, allLoading, setTitlePreviewed }) => {
                     borderRadius: 0,
                     transition: 'all 0.2s ease-in-out'
                 },
-
+                backgroundColor: '#F8F5E2'
             }}
             >
                 <Button

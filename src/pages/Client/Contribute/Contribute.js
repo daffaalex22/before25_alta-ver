@@ -70,49 +70,49 @@ const Contribute = () => {
                         item
                         lg={3}
                     >
-                        <img src={sponsor} style={{ height: '240px', width: '240px' }} />
+                        <img src={sponsor} style={{ height: 'auto', width: '100%' }} />
                     </Grid>
                     <Grid
                         item
                         lg={3}
                     >
-                        <img src={sponsor} style={{ height: '240px', width: '240px' }} />
+                        <img src={sponsor} style={{ height: 'auto', width: '100%' }} />
                     </Grid>
                     <Grid
                         item
                         lg={3}
                     >
-                        <img src={sponsor} style={{ height: '240px', width: '240px' }} />
+                        <img src={sponsor} style={{ height: 'auto', width: '100%' }} />
                     </Grid>
                     <Grid
                         item
                         lg={3}
                     >
-                        <img src={sponsor} style={{ height: '240px', width: '240px' }} />
+                        <img src={sponsor} style={{ height: 'auto', width: '100%' }} />
                     </Grid>
                     <Grid
                         item
                         lg={3}
                     >
-                        <img src={sponsor} style={{ height: '240px', width: '240px' }} />
+                        <img src={sponsor} style={{ height: 'auto', width: '100%' }} />
                     </Grid>
                     <Grid
                         item
                         lg={3}
                     >
-                        <img src={sponsor} style={{ height: '240px', width: '240px' }} />
+                        <img src={sponsor} style={{ height: 'auto', width: '100%' }} />
                     </Grid>
                     <Grid
                         item
                         lg={3}
                     >
-                        <img src={sponsor} style={{ height: '240px', width: '240px' }} />
+                        <img src={sponsor} style={{ height: 'auto', width: '100%' }} />
                     </Grid>
                     <Grid
                         item
                         lg={3}
                     >
-                        <img src={sponsor} style={{ height: '240px', width: '240px' }} />
+                        <img src={sponsor} style={{ height: 'auto', width: '100%' }} />
                     </Grid>
                 </Grid>
             </Paper>

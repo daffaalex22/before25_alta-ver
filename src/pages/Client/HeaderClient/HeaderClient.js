@@ -136,7 +136,7 @@ const HeaderClient = ({ value, setValue, changeBackground }) => {
     }
 
     return (
-        <Container >
+        <Container maxWidth="xl">
             <Box sx={{ width: '100%', padding: 0 }}>
                 <Box
                     sx={{
