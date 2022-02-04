@@ -193,24 +193,27 @@ function App() {
             }>
             </Route>
             <Route path="/faq" element={
-              <>
-                <Box
-                  sx={{
-                    backgroundImage: `url(${bgFaq})`,
-                    backgroundPosition: '70% 50%',
-                  }}
-                >
-                  <HeaderClient value={value} setValue={setValue} changeBackground={changeBackground} />
-                  <Footer />
-                </Box>
-              </>
+              <Box
+                sx={{
+                  backgroundImage: `url(${bgFaq})`,
+                  backgroundPosition: '70% 50%',
+                }}
+              >
+                <HeaderClient value={value} setValue={setValue} changeBackground={changeBackground} />
+                <Footer />
+              </Box>
             }>
             </Route>
             <Route path="/contribute" element={
-              <>
+              <Box
+                sx={{
+                  backgroundImage: `url(${bgContrib})`,
+                  backgroundPosition: '37% 40%',
+                }}
+              >
                 <HeaderClient value={value} setValue={setValue} changeBackground={changeBackground} />
                 <Footer />
-              </>
+              </Box>
             }>
             </Route>
             <Route exact path="/resources/articles/:id" element={

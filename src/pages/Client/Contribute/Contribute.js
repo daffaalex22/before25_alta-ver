@@ -3,6 +3,7 @@ import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import Grid from '@mui/material/Grid'
 import sponsor from '../../../assets/images/sponsor.png'
+import './Contribute.css'
 
 const classes = {
     pageTitle: {
@@ -11,14 +12,15 @@ const classes = {
         fontStyle: 'italic',
         lineHeight: '96px',
         marginTop: '75px',
-        marginBottom: '25px'
+        marginBottom: '25px',
+        color: '#F8F5E2',
     },
     squareBox: {
         border: '1px solid black',
         borderRadius: 0,
         textAlign: 'justify',
         padding: '25px 30px',
-
+        backgroundColor: '#F8F5E2',
     },
     squareBoxText: {
         fontSize: '20px',
@@ -31,7 +33,7 @@ const Contribute = () => {
             marginTop: '17vh',
             marginBottom: '10vh'
         }}>
-            <Typography sx={classes.pageTitle}>
+            <Typography sx={classes.pageTitle} id="contribute-1">
                 Contribute
             </Typography>
             <Paper sx={classes.squareBox} elevation={2}>
@@ -46,7 +48,7 @@ const Contribute = () => {
                     all these programmes for youngsters.
                 </Typography>
             </Paper>
-            <Typography sx={classes.pageTitle}>
+            <Typography sx={classes.pageTitle} id="contribute-2">
                 How you can help?
             </Typography>
             <Paper sx={classes.squareBox} elevation={2}>
@@ -59,7 +61,7 @@ const Contribute = () => {
                     habitasse platea dictumst. Quisque eleifend tellus condimentum, porttitor est sit amet, efficitur libero.
                 </Typography>
             </Paper>
-            <Typography sx={classes.pageTitle}>
+            <Typography sx={classes.pageTitle} id="contribute-3">
                 Previous Sponsors
             </Typography>
             <Paper sx={classes.squareBox} elevation={2}>
