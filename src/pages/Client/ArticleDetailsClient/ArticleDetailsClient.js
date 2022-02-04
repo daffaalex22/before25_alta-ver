@@ -8,6 +8,7 @@ import { gql, useQuery } from "@apollo/client";
 import { useState, useEffect } from "react";
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import LoadingPage from "../../../components/LoadingPage/LoadingPage";
+import ArticleRecom from "../../../components/ArticleRecom/ArticleRecom";
 
 
 const dummyTitle = "The Looming mental Health Crisis"
@@ -79,30 +80,54 @@ const ArticleDetailsClient = () => {
                         01 / {article?.title}
                     </Typography>
                 </Grid>
-                <Grid item xs={12}>
-                    <Typography
-                        variant="h3"
-                        sx={{
-                            marginBottom: '20px'
-                        }}
+                <Grid item xs={12} container spacing={0}>
+                    <Grid
+                        item
+                        xs={12}
+                        md={9}
                     >
-                        {article?.title}
-                    </Typography>
-                    <Typography
-                        variant="subheader"
-                        sx={{
-                            marginBottom: '30px',
-                            fontStyle: 'italic'
-                        }}
+                        <Typography
+                            variant="h3"
+                            sx={{
+                                marginBottom: '20px',
+                                fontStyle: 'italic',
+                                marginRight: '100px',
+                            }}
+                        >
+                            {article?.title}
+                        </Typography>
+                    </Grid>
+                    <Grid
+                        item
+                        xs={12}
+                        md={9}
                     >
-                        Written by {article?.author.name}
-                    </Typography>
-                    <Typography>
-                        {ReactHtmlParser(article?.content)}
-                    </Typography>
+                        <Typography
+                            variant="subheader"
+                            sx={{
+                                marginBottom: '30px',
+                                fontStyle: 'italic',
+                            }}
+                        >
+                            Written by {article?.author?.name}
+                        </Typography>
+                    </Grid>
+                    <Grid
+                        item
+                        xs={12}
+                        md={9}
+                    >
+                        <Typography
+                            sx={{
+                                marginTop: '50px',
+                            }}
+                        >
+                            {ReactHtmlParser(article?.content)}
+                        </Typography>
+                    </Grid>
                 </Grid>
             </Grid>
-
+            <ArticleRecom />
         </Box >
     );
 }

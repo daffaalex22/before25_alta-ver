@@ -22,6 +22,8 @@ import { Navigate } from 'react-router';
 import Box from '@mui/material/Box';
 import bgFaq from './assets/images/bg_faq.png'
 import bgContrib from './assets/images/BG_CONTRIB.png'
+import bgDetails from './assets/images/BG_DETAILS.png'
+import articles from './assets/images/Articles.png'
 import { useLocation } from "react-router-dom";
 
 let theme = createTheme({
@@ -217,10 +219,16 @@ function App() {
             }>
             </Route>
             <Route exact path="/resources/articles/:id" element={
-              <>
+              <Box
+                sx={{
+                  backgroundImage: `url(${bgDetails})`,
+                  backgroundPosition: '60% 30%',
+                  overflow: 'hidden'
+                }}
+              >
                 <HeaderClient value={value} setValue={setValue} changeBackground={changeBackground} />
                 <Footer />
-              </>
+              </Box>
             }>
             </Route>
             <Route exact path="/admin" element={
