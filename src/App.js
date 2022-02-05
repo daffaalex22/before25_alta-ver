@@ -20,11 +20,26 @@ import AuthProvider from './contexts/AuthContext';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import { Navigate } from 'react-router';
 import Box from '@mui/material/Box';
-import bgFaq from './assets/images/bg_faq.png'
-import bgContrib from './assets/images/BG_CONTRIB.png'
-import bgDetails from './assets/images/BG_DETAILS.png'
-import articles from './assets/images/Articles.png'
-import { useLocation } from "react-router-dom";
+import bgFaq from './assets/images/bg_faq.png';
+import bgContrib from './assets/images/BG_CONTRIB.png';
+import bgDetails from './assets/images/BG_DETAILS.png';
+import articles from './assets/images/Articles.png';
+import KursivHalfbett from './assets/fonts_b25/kursiv/GaramondKursivHalbfett.ttf';
+
+const kursivHalfbett = {
+  fontFamily: 'KursivHalfbett',
+  fontStyle: 'semi-bold',
+  fontDisplay: 'swap',
+  fontWeight: '600',
+  src: `
+    local('KursivHalfbett'),
+    local('KursivHalfbett-SemiBold'),
+    url(${KursivHalfbett}) format('ttf')
+  `,
+  unicodeRange:
+    'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF',
+};
+
 
 let theme = createTheme({
   palette: {
@@ -37,7 +52,34 @@ let theme = createTheme({
       // secondary: '#F8F5E2',
     },
   },
-
+  typography: {
+    fontFamily: ['"Open Sans"', 'KursivHalfbett', 'Roboto'].join(','),
+  },
+  overrides: {
+    MuiCssBaseline: {
+      '@global': {
+        '@font-face': [kursivHalfbett],
+      },
+    }
+  },
+  h1: {
+    fontFamily: '"KursivHalfbett", Open Sans',
+  },
+  h2: {
+    fontFamily: '"KursivHalfbett", Open Sans',
+  },
+  h3: {
+    fontFamily: '"KursivHalfbett", Open Sans',
+  },
+  h4: {
+    fontFamily: '"KursivHalfbett", Open Sans',
+  },
+  h5: {
+    fontFamily: '"KursivHalfbett", Open Sans',
+  },
+  h6: {
+    fontFamily: '"KursivHalfbett", Open Sans',
+  },
 })
 theme = responsiveFontSizes(theme);
 
@@ -148,12 +190,6 @@ function App() {
     }
   }, [allData, categoryData, authorData])
 
-  const [background, setBackground] = useState(bgFaq);
-
-  const changeBackground = (value) => {
-    setBackground(value)
-  }
-
   if (authorLoading) return <LoadingPage />
   if (authorError) return <div>{`${authorError.message}`}</div>
 
@@ -182,14 +218,14 @@ function App() {
             <Route exact path="/" element={<Navigate to="/home" />} />
             <Route path="/home" element={
               <>
-                <HeaderClient value={value} setValue={setValue} changeBackground={changeBackground} />
+                <HeaderClient value={value} setValue={setValue} />
                 <Footer />
               </>
             }>
             </Route>
             <Route exact path="/resources" element={
               <>
-                <HeaderClient value={value} setValue={setValue} changeBackground={changeBackground} />
+                <HeaderClient value={value} setValue={setValue} />
                 <Footer />
               </>
             }>
@@ -201,7 +237,7 @@ function App() {
                   backgroundPosition: '70% 50%',
                 }}
               >
-                <HeaderClient value={value} setValue={setValue} changeBackground={changeBackground} />
+                <HeaderClient value={value} setValue={setValue} />
                 <Footer />
               </Box>
             }>
@@ -213,7 +249,7 @@ function App() {
                   backgroundPosition: '37% 40%',
                 }}
               >
-                <HeaderClient value={value} setValue={setValue} changeBackground={changeBackground} />
+                <HeaderClient value={value} setValue={setValue} />
                 <Footer />
               </Box>
             }>
@@ -226,7 +262,7 @@ function App() {
                   overflow: 'hidden'
                 }}
               >
-                <HeaderClient value={value} setValue={setValue} changeBackground={changeBackground} />
+                <HeaderClient value={value} setValue={setValue} />
                 <Footer />
               </Box>
             }>

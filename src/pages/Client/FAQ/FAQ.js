@@ -64,7 +64,7 @@ const FAQ = () => {
             marginTop: '17vh',
             marginBottom: '10vh',
         }}>
-            <Typography sx={classes.pageTitle} id="faq-title">
+            <Typography variant="h1" sx={classes.pageTitle} id="faq-title" fontWeight="bold" >
                 Frequently Asked Questions
             </Typography>
             <Accordion sx={classes.accordion} >

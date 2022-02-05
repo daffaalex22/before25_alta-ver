@@ -1,4 +1,4 @@
-    .swiper {
+    #values .swiper {
         position: relative;
         right: 6.333%;
         width: 91.666%;
@@ -7,12 +7,12 @@
         padding: 35px 0;
     }
   
-    .swiper-slide {
+    #values .swiper-slide {
         text-align: center;
         font-size: 18px;
-        background: white;
+        /* background: white; */
         border: 2px solid black;
-        padding: 15px 5px;
+        /* padding: 15px 5px; */
         /* z-index: -10; */
     
         /* Center slide text vertically */
@@ -30,7 +30,7 @@
         align-items: center;
     }
   
-    .swiper-slide img {
+    #values .swiper-slide img {
         display: block;
         width: 100%;
         height: 50%;

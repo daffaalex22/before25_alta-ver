@@ -7,11 +7,13 @@ import Welcome from '../../../components/Welcome/Welcome'
 import VisionMission from '../../../components/VisionMission/VisionMission'
 import ValuesHome from '../../../components/ValuesHome/ValuesHome'
 import HomeSidebar from '../../../components/HomeSidebar/HomeSidebar'
+import HomeCarousel from '../../../components/HomeCarousel/HomeCarousel'
 
 const Home = () => {
     return (
         <Container maxWidth="xl" >
             <Welcome />
+            {/* <HomeCarousel /> */}
             <OurStory />
             <VisionMission />
             <ValuesHome />

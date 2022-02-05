@@ -19,13 +19,12 @@ const HomeSidebar = () => {
                     xs={12}
                     justifyContent="center"
                     alignItems="center"
-
                 >
                     <Box
                         sx={{
                             position: 'fixed',
-                            top: '40%',
-                            left: '80%'
+                            // top: '40%',
+                            // left: '80%'
                         }}
                     >
                         <Link
