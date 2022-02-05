@@ -13,9 +13,8 @@ const Home = () => {
     return (
         <Container maxWidth="xl" >
             <Welcome />
-            {/* <HomeCarousel /> */}
             <OurStory />
-            <VisionMission />
+            {/* <VisionMission /> */}
             <ValuesHome />
         </Container>
     );
