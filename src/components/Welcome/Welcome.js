@@ -2,15 +2,16 @@ import Container from "@mui/material/Container";
 import Typography from '@mui/material/Typography';
 import Box from "@mui/system/Box";
 import Grid from "@mui/material/Grid";
-import HomeSidebar from '../HomeSidebar/HomeSidebar'
+import HomeSidebar from '../HomeSidebar/HomeSidebar';
+import HomeCarousel from '../HomeCarousel/HomeCarousel';
 
 
 const Welcome = () => {
     return (
         <Container
             sx={{
-                marginTop: '90px',
-                height: '90vh',
+                marginTop: '120px',
+                maxHeight: '80vh',
                 textAlign: 'center'
             }}
             id="welcome"
@@ -18,46 +19,27 @@ const Welcome = () => {
         >
             <Grid
                 container
-                spacing={3}
+                spacing={0}
+                columns={20}
             >
-                <Grid item xs={11}>
-                    <Typography
+                <Grid
+                    item
+                    xs={19}
+                    container
+                    spacing={0}
+                    justifyContent="center"
+                >
+                    <Grid
+                        item
+                        md={14}
+                        xs={19}
                         sx={{
                             position: 'relative',
-                            top: '13vh',
-                            fontWeight: 500,
-                            transform: 'rotate(-6.51deg)',
-                            fontSize: '12vmax'
-                        }}
-                        variant="h1"
-                    >
-                        Welcome!
-                    </Typography>
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            justifyContent: 'center'
+                            left: '2%'
                         }}
                     >
-                        <Typography
-                            sx={{
-                                position: 'relative',
-                                top: '185px',
-                                textAlign: 'justify',
-                                maxWidth: '60vw'
-                            }}
-                        >
-                            "Lorem ipsum dolor sit amet, consectetur
-                            adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua.
-                            Ut enim ad minim veniam, quis nostrud exercitation
-                            ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                            Duis aute irure dolor in reprehenderit in voluptate
-                            velit esse cillum dolore eu fugiat nulla pariatur.
-                            Excepteur sint occaecat cupidatat non proident, sunt in
-                            culpa qui officia deserunt mollit anim id est laborum.
-                        </Typography>
-                    </Box>
+                        <HomeCarousel />
+                    </Grid>
                 </Grid>
                 <HomeSidebar />
             </Grid>

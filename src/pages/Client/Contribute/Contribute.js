@@ -33,7 +33,7 @@ const Contribute = () => {
             marginTop: '17vh',
             marginBottom: '10vh'
         }}>
-            <Typography sx={classes.pageTitle} id="contribute-1">
+            <Typography variant="h1" fontWeight="bold" sx={classes.pageTitle} id="contribute-1" >
                 Contribute
             </Typography>
             <Paper sx={classes.squareBox} elevation={2}>
@@ -48,7 +48,7 @@ const Contribute = () => {
                     all these programmes for youngsters.
                 </Typography>
             </Paper>
-            <Typography sx={classes.pageTitle} id="contribute-2">
+            <Typography variant="h1" fontWeight="bold" sx={classes.pageTitle} id="contribute-2">
                 How you can help?
             </Typography>
             <Paper sx={classes.squareBox} elevation={2}>
@@ -61,7 +61,7 @@ const Contribute = () => {
                     habitasse platea dictumst. Quisque eleifend tellus condimentum, porttitor est sit amet, efficitur libero.
                 </Typography>
             </Paper>
-            <Typography sx={classes.pageTitle} id="contribute-3">
+            <Typography variant="h1" fontWeight="bold" sx={classes.pageTitle} id="contribute-3">
                 Previous Sponsors
             </Typography>
             <Paper sx={classes.squareBox} elevation={2}>

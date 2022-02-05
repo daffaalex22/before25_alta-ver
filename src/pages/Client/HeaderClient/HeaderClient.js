@@ -92,7 +92,7 @@ function a11yProps(index) {
     };
 }
 
-const HeaderClient = ({ value, setValue, changeBackground }) => {
+const HeaderClient = ({ value, setValue }) => {
     const [onArticleDetails, setOnArticleDetails] = useState(false)
     const navigate = useNavigate();
     const location = useLocation();
