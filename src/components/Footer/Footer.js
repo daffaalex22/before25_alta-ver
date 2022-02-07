@@ -41,7 +41,7 @@ const Footer = () => {
             sx={{
                 minHeight: '29vh',
                 backgroundColor: '#382E0B',
-                margin: '25px 0 0 0'
+                width: '100%'
             }}
         >
             <Container>

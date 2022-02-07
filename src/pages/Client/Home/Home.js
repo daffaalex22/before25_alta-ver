@@ -8,15 +8,21 @@ import VisionMission from '../../../components/VisionMission/VisionMission'
 import ValuesHome from '../../../components/ValuesHome/ValuesHome'
 import HomeSidebar from '../../../components/HomeSidebar/HomeSidebar'
 import HomeCarousel from '../../../components/HomeCarousel/HomeCarousel'
+import Contacts from "../../../components/Contacts/Contacts";
+import Footer from "../../../components/Footer/Footer";
 
 const Home = () => {
     return (
-        <Container maxWidth="xl" >
-            <Welcome />
-            <OurStory />
-            {/* <VisionMission /> */}
-            <ValuesHome />
-        </Container>
+        <>
+            <Container maxWidth="xl" sx={{ marginBottom: '200px' }}>
+                <Welcome />
+                <OurStory />
+                <ValuesHome />
+                <Contacts />
+                {/* <Footer /> */}
+            </Container>
+
+        </>
     );
 }
 

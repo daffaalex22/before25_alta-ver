@@ -25,6 +25,7 @@ import bgContrib from './assets/images/BG_CONTRIB.png';
 import bgDetails from './assets/images/BG_DETAILS.png';
 import articles from './assets/images/Articles.png';
 import KursivHalfbett from './assets/fonts_b25/kursiv/GaramondKursivHalbfett.ttf';
+import Container from '@mui/material/Container';
 
 const kursivHalfbett = {
   fontFamily: 'KursivHalfbett',
@@ -81,6 +82,7 @@ let theme = createTheme({
     fontFamily: '"KursivHalfbett", Open Sans',
   },
 })
+
 theme = responsiveFontSizes(theme);
 
 function App() {
@@ -219,14 +221,12 @@ function App() {
             <Route path="/home" element={
               <>
                 <HeaderClient value={value} setValue={setValue} />
-                <Footer />
               </>
             }>
             </Route>
             <Route exact path="/resources" element={
               <>
                 <HeaderClient value={value} setValue={setValue} />
-                <Footer />
               </>
             }>
             </Route>
@@ -238,7 +238,6 @@ function App() {
                 }}
               >
                 <HeaderClient value={value} setValue={setValue} />
-                <Footer />
               </Box>
             }>
             </Route>
@@ -250,7 +249,6 @@ function App() {
                 }}
               >
                 <HeaderClient value={value} setValue={setValue} />
-                <Footer />
               </Box>
             }>
             </Route>
@@ -263,7 +261,6 @@ function App() {
                 }}
               >
                 <HeaderClient value={value} setValue={setValue} />
-                <Footer />
               </Box>
             }>
             </Route>
