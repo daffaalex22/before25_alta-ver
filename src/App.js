@@ -221,14 +221,12 @@ function App() {
             <Route path="/home" element={
               <>
                 <HeaderClient value={value} setValue={setValue} />
-                <Footer />
               </>
             }>
             </Route>
             <Route exact path="/resources" element={
               <>
                 <HeaderClient value={value} setValue={setValue} />
-                <Footer />
               </>
             }>
             </Route>
@@ -240,7 +238,6 @@ function App() {
                 }}
               >
                 <HeaderClient value={value} setValue={setValue} />
-                <Footer />
               </Box>
             }>
             </Route>
@@ -252,7 +249,6 @@ function App() {
                 }}
               >
                 <HeaderClient value={value} setValue={setValue} />
-                <Footer />
               </Box>
             }>
             </Route>
@@ -265,7 +261,6 @@ function App() {
                 }}
               >
                 <HeaderClient value={value} setValue={setValue} />
-                <Footer />
               </Box>
             }>
             </Route>

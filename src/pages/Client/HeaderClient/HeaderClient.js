@@ -21,6 +21,7 @@ import logoHitam from '../../../assets/images/LOGO_1_Resized.png'
 import logoFooter from '../../../assets/images/LOGO_Footer.png'
 import bgContrib from '../../../assets/images/BG_CONTRIB.png'
 import bgFaq from '../../../assets/images/bg_faq.png'
+import Footer from '../../../components/Footer/Footer';
 
 const dimension = {
     navHeight: '10vh'
@@ -136,59 +137,65 @@ const HeaderClient = ({ value, setValue }) => {
     }
 
     return (
-        <Container maxWidth="xl">
-            <Box sx={{ width: '100%', padding: 0 }}>
-                <Box
-                    sx={{
-                        borderBottom: 1,
-                        borderColor: 'divider',
-                        height: '500',
-                        width: '100%',
-                        padding: 0,
-                    }}>
-                    <Tabs
-                        value={value}
-                        onChange={handleChange}
-                        aria-label="basic tabs example"
-                        sx={classes.tabs}
-                    >
-                        <Tab
-                            label={
-                                <>
-                                    <img src={logoHitam} alt="Logo B25" style={{ width: '85px', height: 'auto', paddingBottom: '10px' }} />
-                                </>
-                            }
-                            {...a11yProps(0)}
-                            sx={classes.tab}
-                        />
-                        <Tab
-                            label="Resources"
-                            {...a11yProps(1)}
-                            sx={classes.tab}
+        <>
+            <Grid
+                container
+                spacing={2}
+            >
+                <Grid item xs={12}>
+                    <Container maxWidth="xl">
+                        <Box sx={{ width: '100%', padding: 0 }}>
+                            <Box
+                                sx={{
+                                    borderBottom: 1,
+                                    borderColor: 'divider',
+                                    height: '500',
+                                    width: '100%',
+                                    padding: 0,
+                                }}>
+                                <Tabs
+                                    value={value}
+                                    onChange={handleChange}
+                                    aria-label="basic tabs example"
+                                    sx={classes.tabs}
+                                >
+                                    <Tab
+                                        label={
+                                            <>
+                                                <img src={logoHitam} alt="Logo B25" style={{ width: '85px', height: 'auto', paddingBottom: '10px' }} />
+                                            </>
+                                        }
+                                        {...a11yProps(0)}
+                                        sx={classes.tab}
+                                    />
+                                    <Tab
+                                        label="Resources"
+                                        {...a11yProps(1)}
+                                        sx={classes.tab}
 
-                        />
+                                    />
 
-                        <Tab
-                            label="FAQ"
-                            {...a11yProps(2)}
-                            sx={classes.tab}
+                                    <Tab
+                                        label="FAQ"
+                                        {...a11yProps(2)}
+                                        sx={classes.tab}
 
-                        />
+                                    />
 
-                        <Tab
-                            label="Contribute"
-                            {...a11yProps(3)}
-                            sx={classes.tab}
+                                    <Tab
+                                        label="Contribute"
+                                        {...a11yProps(3)}
+                                        sx={classes.tab}
 
-                        />
-                        {onArticleDetails && (
-                            <Tab
-                                label="Article"
-                                {...a11yProps(4)}
-                                sx={classes.tab}
-                            />
-                        )}
-                        {/* <Grid
+                                    />
+                                    {onArticleDetails && (
+                                        <Tab
+                                            label="Article"
+                                            {...a11yProps(4)}
+                                            sx={classes.tab}
+                                        />
+                                    )}
+                                    {/* <Grid
                             container
                             spacing={0}
                         >
@@ -202,28 +209,34 @@ const HeaderClient = ({ value, setValue }) => {
                                 </Box>
                             </Grid>
                         </Grid> */}
-                    </Tabs>
-                </Box>
-                <TabPanel value={value} index={0}>
-                    <Home />
-                </TabPanel>
-                <TabPanel value={value} index={1}>
-                    <Resources
-                        setOnArticleDetails={setOnArticleDetails}
-                        setValue={setValue}
-                    />
-                </TabPanel>
-                <TabPanel value={value} index={2}>
-                    <FAQ />
-                </TabPanel>
-                <TabPanel value={value} index={3}>
-                    <Contribute />
-                </TabPanel>
-                <TabPanel value={value} index={4}>
-                    <ArticleDetailsClient />
-                </TabPanel>
-            </Box>
-        </Container >
+                                </Tabs>
+                            </Box>
+                            <TabPanel value={value} index={0}>
+                                <Home />
+                            </TabPanel>
+                            <TabPanel value={value} index={1}>
+                                <Resources
+                                    setOnArticleDetails={setOnArticleDetails}
+                                    setValue={setValue}
+                                />
+                            </TabPanel>
+                            <TabPanel value={value} index={2}>
+                                <FAQ />
+                            </TabPanel>
+                            <TabPanel value={value} index={3}>
+                                <Contribute />
+                            </TabPanel>
+                            <TabPanel value={value} index={4}>
+                                <ArticleDetailsClient />
+                            </TabPanel>
+                        </Box>
+                    </Container >
+                </Grid>
+                <Grid item xs={12}>
+                    <Footer />
+                </Grid>
+            </Grid>
+        </>
     );
 }
 

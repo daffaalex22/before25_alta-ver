@@ -16,7 +16,7 @@ const ValuesHome = () => {
         <Container
             sx={{
                 marginTop: '300px',
-                height: '90vh',
+                minHeight: '90vh',
             }}
             id="values"
         >
