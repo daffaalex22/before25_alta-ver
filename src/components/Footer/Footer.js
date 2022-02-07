@@ -41,10 +41,12 @@ const Footer = () => {
             sx={{
                 minHeight: '29vh',
                 backgroundColor: '#382E0B',
-                margin: '25px 0 0 0'
+                margin: '25px 0 0 0',
+                width: '100%'
             }}
         >
-            <Container>
+            <Container
+            >
                 <Grid container
                     spacing={3}
                     justifyContent="space-around"

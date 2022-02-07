@@ -11,10 +11,9 @@ import HomeCarousel from '../../../components/HomeCarousel/HomeCarousel'
 
 const Home = () => {
     return (
-        <Container maxWidth="xl" >
+        <Container maxWidth="xl" sx={{ marginBottom: '200px' }}>
             <Welcome />
             <OurStory />
-            {/* <VisionMission /> */}
             <ValuesHome />
         </Container>
     );

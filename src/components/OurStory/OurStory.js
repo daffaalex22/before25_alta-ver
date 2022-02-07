@@ -12,7 +12,6 @@ const OurStory = () => {
             sx={{
                 marginTop: '25%',
                 minHeight: '57vh',
-                // textAlign: 'left',
                 padding: 0,
                 position: 'relative',
                 left: '-2%'

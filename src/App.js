@@ -25,6 +25,7 @@ import bgContrib from './assets/images/BG_CONTRIB.png';
 import bgDetails from './assets/images/BG_DETAILS.png';
 import articles from './assets/images/Articles.png';
 import KursivHalfbett from './assets/fonts_b25/kursiv/GaramondKursivHalbfett.ttf';
+import Container from '@mui/material/Container';
 
 const kursivHalfbett = {
   fontFamily: 'KursivHalfbett',
@@ -81,6 +82,7 @@ let theme = createTheme({
     fontFamily: '"KursivHalfbett", Open Sans',
   },
 })
+
 theme = responsiveFontSizes(theme);
 
 function App() {
