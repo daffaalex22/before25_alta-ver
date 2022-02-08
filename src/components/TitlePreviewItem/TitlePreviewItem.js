@@ -26,7 +26,7 @@ const TitlePreviewItem = ({ article, allLoading, setTitlePreviewed }) => {
                 transition: 'all 0.3s ease-in-out',
                 '&:hover': {
                     boxShadow: 6,
-                    borderLeft: '30px solid black',
+                    borderLeft: '30px solid #382E0B',
                     borderRadius: 0,
                     transition: 'all 0.2s ease-in-out'
                 },

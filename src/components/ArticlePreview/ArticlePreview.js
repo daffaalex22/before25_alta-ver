@@ -17,10 +17,11 @@ const classes = {
         padding: '15px 40px',
         borderRadius: 0,
         '&:hover': {
-            backgroundColor: 'white',
+            backgroundColor: '#F8F5E2',
             color: 'black',
             border: '1.5px solid black'
-        }
+        },
+        backgroundColor: '#382E0B',
     }
 }
 
@@ -40,7 +41,7 @@ const ArticlePreview = ({ setOnArticleDetails, setValue, article }) => {
             item
             container
             xs={11}
-            lg={5}
+            lg={4}
             spacing={3}
             height="fit-content"
             direction="column"
@@ -48,6 +49,7 @@ const ArticlePreview = ({ setOnArticleDetails, setValue, article }) => {
             sx={{
                 // height: '70vh'
             }}
+            justifyContent="center"
         >
             <Grid item xs={1}>
                 <Typography
@@ -93,6 +95,7 @@ const ArticlePreview = ({ setOnArticleDetails, setValue, article }) => {
                             height: '40vh',
                             overflow: 'auto',
                             transition: 'all 0.3s ease-in-out',
+                            backgroundColor: '#F8F5E2',
                             '&:hover': {
                                 boxShadow: 6,
                                 transition: 'all 0.3s ease-in-out'
@@ -111,7 +114,7 @@ const ArticlePreview = ({ setOnArticleDetails, setValue, article }) => {
                     variant="contained"
                     onClick={handleSeeMore}
                 >
-                    See More
+                    Read More
                 </Button>
             </Grid>
         </Grid>

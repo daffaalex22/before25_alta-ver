@@ -77,8 +77,8 @@ const Resources = ({ setOnArticleDetails, setValue }) => {
         >
             <Grid
                 container
-                spacing={3}
-                justifyContent="space-between"
+                spacing={2}
+                justifyContent="center"
             >
                 <ArticlePreview
                     setOnArticleDetails={setOnArticleDetails}
