@@ -26,6 +26,7 @@ import bgDetails from './assets/images/BG_DETAILS.png';
 import articles from './assets/images/Articles.png';
 import KursivHalfbett from './assets/fonts_b25/kursiv/GaramondKursivHalbfett.ttf';
 import Container from '@mui/material/Container';
+import bgHome from './assets/images/BG_HOME.png';
 
 const kursivHalfbett = {
   fontFamily: 'KursivHalfbett',
@@ -219,9 +220,15 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Navigate to="/home" />} />
             <Route path="/home" element={
-              <>
+              <Box
+                sx={{
+                  backgroundImage: `url(${bgHome})`,
+                  backgroundPosition: '70% 50%',
+                  backgroundColor: '#F8F5E2'
+                }}
+              >
                 <HeaderClient value={value} setValue={setValue} />
-              </>
+              </Box>
             }>
             </Route>
             <Route exact path="/resources" element={
