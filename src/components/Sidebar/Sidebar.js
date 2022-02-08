@@ -7,7 +7,6 @@ const Sidebar = () => {
         <Grid
             item
             xs={1}
-            lg={2}
         >
             <Grid
                 container

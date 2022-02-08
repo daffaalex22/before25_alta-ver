@@ -32,7 +32,7 @@ const classes = {
         '&:last-child': {
             borderRadius: 0
         },
-        backgroundColor: 'transparent'
+        backgroundColor: '#F8F5E2'
     },
     accordionDetails: {
         textAlign: 'justify'
