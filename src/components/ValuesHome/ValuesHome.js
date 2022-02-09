@@ -48,6 +48,7 @@ const ValuesHome = () => {
                     <Box
                         sx={{
                             border: '2px solid black',
+                            backgroundColor: '#F8F5E2',
                             padding: '30px 35px 90px 35px',
                             maxWidth: '80%',
                             minHeight: '245px'
@@ -90,6 +91,7 @@ const ValuesHome = () => {
                     <Box
                         sx={{
                             border: '2px solid black',
+                            backgroundColor: '#F8F5E2',
                             padding: '30px 35px 90px 35px',
                             maxWidth: '80%',
                             minHeight: '245px'
@@ -130,6 +132,7 @@ const ValuesHome = () => {
                     <Box
                         sx={{
                             border: '2px solid black',
+                            backgroundColor: '#F8F5E2',
                             padding: '30px 35px 90px 35px',
                             maxWidth: '80%',
                             minHeight: '245px',

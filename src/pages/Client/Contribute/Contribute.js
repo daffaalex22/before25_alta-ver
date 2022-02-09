@@ -4,6 +4,7 @@ import Paper from "@mui/material/Paper";
 import Grid from '@mui/material/Grid'
 import sponsor from '../../../assets/images/sponsor.png'
 import './Contribute.css'
+import { Container } from "@mui/material";
 
 const classes = {
     pageTitle: {
@@ -29,7 +30,7 @@ const classes = {
 
 const Contribute = () => {
     return (
-        <Box sx={{
+        <Container sx={{
             marginTop: '17vh',
             marginBottom: '10vh'
         }}>
@@ -116,7 +117,7 @@ const Contribute = () => {
                     </Grid>
                 </Grid>
             </Paper>
-        </Box>
+        </Container>
     );
 }
 

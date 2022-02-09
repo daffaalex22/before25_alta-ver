@@ -2,6 +2,7 @@ import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/system/Box';
+import Container from '@mui/material/Container';
 import { Link } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { styled } from '@mui/material/styles';
@@ -60,7 +61,7 @@ const AccordionSummary = styled((props) => (
 
 const FAQ = () => {
     return (
-        <Box sx={{
+        <Container sx={{
             marginTop: '17vh',
             marginBottom: '10vh',
         }}>
@@ -188,7 +189,7 @@ const FAQ = () => {
                     </Typography>
                 </AccordionDetails>
             </Accordion>
-        </Box>
+        </Container>
     );
 }
 

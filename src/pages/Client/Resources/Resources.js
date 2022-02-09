@@ -13,6 +13,7 @@ import { Link } from "@mui/material";
 import { GET_ALL_ARTICLES } from "../../../gql/queries";
 import { useQuery, useMutation } from "@apollo/client";
 import { useState, useEffect } from "react";
+import VideoResources from "../../../components/VideoResources/VideoResources";
 
 const Resources = ({ setOnArticleDetails, setValue }) => {
     const [titlePreviewed, setTitlePreviewed] = useState('')
@@ -77,21 +78,30 @@ const Resources = ({ setOnArticleDetails, setValue }) => {
         >
             <Grid
                 container
-                spacing={2}
-                justifyContent="center"
+                spacing={0}
+
             >
-                <ArticlePreview
-                    setOnArticleDetails={setOnArticleDetails}
-                    setValue={setValue}
-                    article={articleToPreview}
-                />
-                <TitlePreview
-                    defaultArticleList={articleToTitle}
-                    setTitlePreviewed={setTitlePreviewed}
-                // setVariablesResources={setVariables}
-                />
-                <Sidebar />
-            </Grid >
+                <Grid
+                    item
+                    xs={12}
+                    container
+                    spacing={1}
+                    justifyContent="center"
+                >
+                    <ArticlePreview
+                        setOnArticleDetails={setOnArticleDetails}
+                        setValue={setValue}
+                        article={articleToPreview}
+                    />
+                    <TitlePreview
+                        defaultArticleList={articleToTitle}
+                        setTitlePreviewed={setTitlePreviewed}
+                    // setVariablesResources={setVariables}
+                    />
+                    <Sidebar />
+                </Grid >
+                <VideoResources />
+            </Grid>
         </Box >);
 }
 
