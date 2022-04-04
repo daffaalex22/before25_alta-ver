@@ -6,7 +6,7 @@ This is a Frontend project created using [Javascript](https://www.javascript.com
 ### In Development
 During development, the app uses also packages like [react-youtube](https://www.npmjs.com/package/react-youtube) to embed YouTube video to the web app and also [Swiper](https://swiperjs.com/), a carousel library that is available for React.
 
-## Access App Through
+## Access The WebApp
 The following URI can be accessed to view to current progress of the project:
 https://before25-alterra.netlify.app/
 
